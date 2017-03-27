@@ -24,6 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateMediaParams;
+import io.swagger.client.model.DeleteMedia;
+import java.io.File;
 import io.swagger.client.model.ListMedia;
 import io.swagger.client.model.MediaFull;
 
@@ -61,19 +63,168 @@ public class MediaApi {
   * Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
   * See Account Media for more info on the properties.
    * @param accountId Account ID
-   * @param data Media data
+   * @param json Media extra parameters
+   * @param file Media file
    * @return MediaFull
   */
-  public MediaFull createAccountMedia (Integer accountId, CreateMediaParams data) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = data;
+  public MediaFull createAccountMediaFiles (Integer accountId, String json, File file) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMedia",
-        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMedia"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMediaFiles",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMediaFiles"));
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/media".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/media/files".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "multipart/form-data"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (json != null) {
+        localVarBuilder.addTextBody("json", ApiInvoker.parameterToString(json), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (file != null) {
+        localVarBuilder.addBinaryBody("file", file);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("json", ApiInvoker.parameterToString(json));
+    }
+
+    String[] authNames = new String[] { "apiKey" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (MediaFull) ApiInvoker.deserialize(localVarResponse, "", MediaFull.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+       if (ex.getCause() instanceof VolleyError) {
+         VolleyError volleyError = (VolleyError)ex.getCause();
+         if (volleyError.networkResponse != null) {
+           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+         }
+       }
+       throw ex;
+    } catch (TimeoutException ex) {
+       throw ex;
+    }
+  }
+
+      /**
+   * Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
+   * See Account Media for more info on the properties.
+   * @param accountId Account ID   * @param json Media extra parameters   * @param file Media file
+  */
+  public void createAccountMediaFiles (Integer accountId, String json, File file, final Response.Listener<MediaFull> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+  
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMediaFiles",
+         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMediaFiles"));
+    }
+    
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/media/files".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "multipart/form-data"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (json != null) {
+        localVarBuilder.addTextBody("json", ApiInvoker.parameterToString(json), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (file != null) {
+        localVarBuilder.addBinaryBody("file", file);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      formParams.put("json", ApiInvoker.parameterToString(json));
+
+    }
+
+      String[] authNames = new String[] { "apiKey" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((MediaFull) ApiInvoker.deserialize(localVarResponse,  "", MediaFull.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
+  * See Account Media for more info on the properties.
+   * @param accountId Account ID
+   * @param data Media data
+   * @return MediaFull
+  */
+  public MediaFull createAccountMediaTts (Integer accountId, CreateMediaParams data) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = data;
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMediaTts",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMediaTts"));
+    }
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/media/tts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -126,19 +277,19 @@ public class MediaApi {
    * See Account Media for more info on the properties.
    * @param accountId Account ID   * @param data Media data
   */
-  public void createAccountMedia (Integer accountId, CreateMediaParams data, final Response.Listener<MediaFull> responseListener, final Response.ErrorListener errorListener) {
+  public void createAccountMediaTts (Integer accountId, CreateMediaParams data, final Response.Listener<MediaFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
   
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMedia",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMedia"));
+       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMediaTts",
+         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMediaTts"));
     }
     
 
     // create path and map variables
-    String path = "/accounts/{account_id}/media".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/media/tts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -189,27 +340,169 @@ public class MediaApi {
     }
   }
   /**
+  * Delete an individual media record
+  * See Account Media for more info on the properties.
+   * @param accountId Account ID
+   * @param mediaId Media ID
+   * @return DeleteMedia
+  */
+  public DeleteMedia deleteAccountMedia (Integer accountId, Integer mediaId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountMedia",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountMedia"));
+    }
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'mediaId' when calling deleteAccountMedia",
+        new ApiException(400, "Missing the required parameter 'mediaId' when calling deleteAccountMedia"));
+    }
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/media/{media_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "media_id" + "\\}", apiInvoker.escapeString(mediaId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiKey" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (DeleteMedia) ApiInvoker.deserialize(localVarResponse, "", DeleteMedia.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+       if (ex.getCause() instanceof VolleyError) {
+         VolleyError volleyError = (VolleyError)ex.getCause();
+         if (volleyError.networkResponse != null) {
+           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+         }
+       }
+       throw ex;
+    } catch (TimeoutException ex) {
+       throw ex;
+    }
+  }
+
+      /**
+   * Delete an individual media record
+   * See Account Media for more info on the properties.
+   * @param accountId Account ID   * @param mediaId Media ID
+  */
+  public void deleteAccountMedia (Integer accountId, Integer mediaId, final Response.Listener<DeleteMedia> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+  
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountMedia",
+         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountMedia"));
+    }
+    
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'mediaId' when calling deleteAccountMedia",
+         new ApiException(400, "Missing the required parameter 'mediaId' when calling deleteAccountMedia"));
+    }
+    
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/media/{media_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "media_id" + "\\}", apiInvoker.escapeString(mediaId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+      String[] authNames = new String[] { "apiKey" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((DeleteMedia) ApiInvoker.deserialize(localVarResponse,  "", DeleteMedia.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
   * Show details of an individual media recording (Greeting or Hold Music)
   * Get individual media recording
    * @param accountId Account ID
-   * @param recordingId Recording ID
+   * @param mediaId Media ID
    * @return MediaFull
   */
-  public MediaFull getAccountMedia (Integer accountId, Integer recordingId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public MediaFull getAccountMedia (Integer accountId, Integer mediaId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountMedia",
         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountMedia"));
     }
-    // verify the required parameter 'recordingId' is set
-    if (recordingId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'recordingId' when calling getAccountMedia",
-        new ApiException(400, "Missing the required parameter 'recordingId' when calling getAccountMedia"));
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'mediaId' when calling getAccountMedia",
+        new ApiException(400, "Missing the required parameter 'mediaId' when calling getAccountMedia"));
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/media/{recording_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "recording_id" + "\\}", apiInvoker.escapeString(recordingId.toString()));
+    String path = "/accounts/{account_id}/media/{media_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "media_id" + "\\}", apiInvoker.escapeString(mediaId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -260,9 +553,9 @@ public class MediaApi {
       /**
    * Show details of an individual media recording (Greeting or Hold Music)
    * Get individual media recording
-   * @param accountId Account ID   * @param recordingId Recording ID
+   * @param accountId Account ID   * @param mediaId Media ID
   */
-  public void getAccountMedia (Integer accountId, Integer recordingId, final Response.Listener<MediaFull> responseListener, final Response.ErrorListener errorListener) {
+  public void getAccountMedia (Integer accountId, Integer mediaId, final Response.Listener<MediaFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
   
@@ -272,15 +565,15 @@ public class MediaApi {
          new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountMedia"));
     }
     
-    // verify the required parameter 'recordingId' is set
-    if (recordingId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'recordingId' when calling getAccountMedia",
-         new ApiException(400, "Missing the required parameter 'recordingId' when calling getAccountMedia"));
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'mediaId' when calling getAccountMedia",
+         new ApiException(400, "Missing the required parameter 'mediaId' when calling getAccountMedia"));
     }
     
 
     // create path and map variables
-    String path = "/accounts/{account_id}/media/{recording_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "recording_id" + "\\}", apiInvoker.escapeString(recordingId.toString()));
+    String path = "/accounts/{account_id}/media/{media_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "media_id" + "\\}", apiInvoker.escapeString(mediaId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -467,6 +760,149 @@ public class MediaApi {
           public void onResponse(String localVarResponse) {
             try {
               responseListener.onResponse((ListMedia) ApiInvoker.deserialize(localVarResponse,  "", ListMedia.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB.
+  * See Account Media for more info on the properties.
+   * @param accountId Account ID
+   * @param mediaId Media ID
+   * @param data Media data
+   * @return MediaFull
+  */
+  public MediaFull replaceAccountMediaTts (Integer accountId, Integer mediaId, CreateMediaParams data) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = data;
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountMediaTts",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountMediaTts"));
+    }
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'mediaId' when calling replaceAccountMediaTts",
+        new ApiException(400, "Missing the required parameter 'mediaId' when calling replaceAccountMediaTts"));
+    }
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/media/{media_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "media_id" + "\\}", apiInvoker.escapeString(mediaId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiKey" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (MediaFull) ApiInvoker.deserialize(localVarResponse, "", MediaFull.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+       if (ex.getCause() instanceof VolleyError) {
+         VolleyError volleyError = (VolleyError)ex.getCause();
+         if (volleyError.networkResponse != null) {
+           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+         }
+       }
+       throw ex;
+    } catch (TimeoutException ex) {
+       throw ex;
+    }
+  }
+
+      /**
+   * Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB.
+   * See Account Media for more info on the properties.
+   * @param accountId Account ID   * @param mediaId Media ID   * @param data Media data
+  */
+  public void replaceAccountMediaTts (Integer accountId, Integer mediaId, CreateMediaParams data, final Response.Listener<MediaFull> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = data;
+
+  
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountMediaTts",
+         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountMediaTts"));
+    }
+    
+    // verify the required parameter 'mediaId' is set
+    if (mediaId == null) {
+       VolleyError error = new VolleyError("Missing the required parameter 'mediaId' when calling replaceAccountMediaTts",
+         new ApiException(400, "Missing the required parameter 'mediaId' when calling replaceAccountMediaTts"));
+    }
+    
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/media/{media_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "media_id" + "\\}", apiInvoker.escapeString(mediaId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+      String[] authNames = new String[] { "apiKey" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((MediaFull) ApiInvoker.deserialize(localVarResponse,  "", MediaFull.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }

@@ -192,7 +192,7 @@ public class MenusApi {
   }
   /**
   * Delete an individual menu
-  * This service shows the details of an individual menu.
+  * See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param menuId Menu ID
    * @return DeleteMenu
@@ -261,7 +261,7 @@ public class MenusApi {
 
       /**
    * Delete an individual menu
-   * This service shows the details of an individual menu.
+   * See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param menuId Menu ID
   */
   public void deleteAccountMenu (Integer accountId, Integer menuId, final Response.Listener<DeleteMenu> responseListener, final Response.ErrorListener errorListener) {
@@ -627,7 +627,7 @@ public class MenusApi {
   }
   /**
   * Replace an individual menu
-  * This service replaces the details of an individual Menu.
+  * See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param menuId Menu ID
    * @param data Menu data
@@ -697,7 +697,7 @@ public class MenusApi {
 
       /**
    * Replace an individual menu
-   * This service replaces the details of an individual Menu.
+   * See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param menuId Menu ID   * @param data Menu data
   */
   public void replaceAccountMenu (Integer accountId, Integer menuId, ReplaceMenuParams data, final Response.Listener<MenuFull> responseListener, final Response.ErrorListener errorListener) {

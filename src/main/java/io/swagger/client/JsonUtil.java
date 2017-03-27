@@ -185,6 +185,10 @@ public class JsonUtil {
       return new TypeToken<List<DeleteGroup>>(){}.getType();
     }
     
+    if ("DeleteMedia".equalsIgnoreCase(className)) {
+      return new TypeToken<List<DeleteMedia>>(){}.getType();
+    }
+    
     if ("DeleteMenu".equalsIgnoreCase(className)) {
       return new TypeToken<List<DeleteMenu>>(){}.getType();
     }
@@ -665,6 +669,10 @@ public class JsonUtil {
     
     if ("DeleteGroup".equalsIgnoreCase(className)) {
       return new TypeToken<DeleteGroup>(){}.getType();
+    }
+    
+    if ("DeleteMedia".equalsIgnoreCase(className)) {
+      return new TypeToken<DeleteMedia>(){}.getType();
     }
     
     if ("DeleteMenu".equalsIgnoreCase(className)) {

@@ -113,9 +113,12 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**getAccountExtensionContactGroup**](docs/GroupsApi.md#getAccountExtensionContactGroup) | **GET** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | 
 *GroupsApi* | [**listAccountExtensionContactGroups**](docs/GroupsApi.md#listAccountExtensionContactGroups) | **GET** /accounts/{account_id}/extensions/{extension_id}/contact-groups | Show a list of contact groups belonging to an extension
 *GroupsApi* | [**replaceAccountExtensionContactGroup**](docs/GroupsApi.md#replaceAccountExtensionContactGroup) | **PUT** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | 
-*MediaApi* | [**createAccountMedia**](docs/MediaApi.md#createAccountMedia) | **POST** /accounts/{account_id}/media | Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
-*MediaApi* | [**getAccountMedia**](docs/MediaApi.md#getAccountMedia) | **GET** /accounts/{account_id}/media/{recording_id} | Show details of an individual media recording (Greeting or Hold Music)
+*MediaApi* | [**createAccountMediaFiles**](docs/MediaApi.md#createAccountMediaFiles) | **POST** /accounts/{account_id}/media/files | Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
+*MediaApi* | [**createAccountMediaTts**](docs/MediaApi.md#createAccountMediaTts) | **POST** /accounts/{account_id}/media/tts | Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
+*MediaApi* | [**deleteAccountMedia**](docs/MediaApi.md#deleteAccountMedia) | **DELETE** /accounts/{account_id}/media/{media_id} | Delete an individual media record
+*MediaApi* | [**getAccountMedia**](docs/MediaApi.md#getAccountMedia) | **GET** /accounts/{account_id}/media/{media_id} | Show details of an individual media recording (Greeting or Hold Music)
 *MediaApi* | [**listAccountMedia**](docs/MediaApi.md#listAccountMedia) | **GET** /accounts/{account_id}/media | Get a list of media recordings for an account
+*MediaApi* | [**replaceAccountMediaTts**](docs/MediaApi.md#replaceAccountMediaTts) | **PUT** /accounts/{account_id}/media/{media_id} | Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB.
 *MenusApi* | [**createAccountMenu**](docs/MenusApi.md#createAccountMenu) | **POST** /accounts/{account_id}/menus | Create an individual menu
 *MenusApi* | [**deleteAccountMenu**](docs/MenusApi.md#deleteAccountMenu) | **DELETE** /accounts/{account_id}/menus/{menu_id} | Delete an individual menu
 *MenusApi* | [**getAccountMenu**](docs/MenusApi.md#getAccountMenu) | **GET** /accounts/{account_id}/menus/{menu_id} | Show details of an individual menu
@@ -184,6 +187,7 @@ Class | Method | HTTP request | Description
  - [CreateTrunkParams](docs/CreateTrunkParams.md)
  - [DeleteContact](docs/DeleteContact.md)
  - [DeleteGroup](docs/DeleteGroup.md)
+ - [DeleteMedia](docs/DeleteMedia.md)
  - [DeleteMenu](docs/DeleteMenu.md)
  - [DeleteQueue](docs/DeleteQueue.md)
  - [DeleteRoute](docs/DeleteRoute.md)

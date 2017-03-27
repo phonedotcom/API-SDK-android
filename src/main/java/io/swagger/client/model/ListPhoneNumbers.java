@@ -13,7 +13,7 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.FilterIdNamePhoneNumberArray;
-import io.swagger.client.model.PhoneNumberContact;
+import io.swagger.client.model.PhoneNumberFull;
 import io.swagger.client.model.SortIdNamePhoneNumber;
 import java.util.*;
 import io.swagger.annotations.*;
@@ -33,7 +33,7 @@ public class ListPhoneNumbers {
   @SerializedName("limit")
   private Integer limit = null;
   @SerializedName("items")
-  private List<PhoneNumberContact> items = null;
+  private List<PhoneNumberFull> items = null;
 
   /**
    **/
@@ -89,10 +89,10 @@ public class ListPhoneNumbers {
    * Array of Contact Phone Number Objects. See below for details.
    **/
   @ApiModelProperty(value = "Array of Contact Phone Number Objects. See below for details.")
-  public List<PhoneNumberContact> getItems() {
+  public List<PhoneNumberFull> getItems() {
     return items;
   }
-  public void setItems(List<PhoneNumberContact> items) {
+  public void setItems(List<PhoneNumberFull> items) {
     this.items = items;
   }
 
