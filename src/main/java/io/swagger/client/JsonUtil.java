@@ -481,6 +481,10 @@ public class JsonUtil {
       return new TypeToken<List<SmsForwarding>>(){}.getType();
     }
     
+    if ("SmsForwardingParams".equalsIgnoreCase(className)) {
+      return new TypeToken<List<SmsForwardingParams>>(){}.getType();
+    }
+    
     if ("SmsFull".equalsIgnoreCase(className)) {
       return new TypeToken<List<SmsFull>>(){}.getType();
     }
@@ -965,6 +969,10 @@ public class JsonUtil {
     
     if ("SmsForwarding".equalsIgnoreCase(className)) {
       return new TypeToken<SmsForwarding>(){}.getType();
+    }
+    
+    if ("SmsForwardingParams".equalsIgnoreCase(className)) {
+      return new TypeToken<SmsForwardingParams>(){}.getType();
     }
     
     if ("SmsFull".equalsIgnoreCase(className)) {

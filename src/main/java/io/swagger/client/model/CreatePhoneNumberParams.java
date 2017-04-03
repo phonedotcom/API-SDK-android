@@ -12,7 +12,9 @@
 
 package io.swagger.client.model;
 
-import java.util.*;
+import io.swagger.client.model.CallNotifications;
+import io.swagger.client.model.CallerIdPhoneNumber;
+import io.swagger.client.model.SmsForwardingParams;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -29,20 +31,12 @@ public class CreatePhoneNumberParams {
   private Boolean blockIncoming = null;
   @SerializedName("block_anonymous")
   private Boolean blockAnonymous = null;
-  @SerializedName("caller_id[name]")
-  private String callerIdName = null;
-  @SerializedName("caller_id[type]")
-  private String callerIdType = null;
-  @SerializedName("sms_forwarding[type]")
-  private String smsForwardingType = null;
-  @SerializedName("sms_forwarding[application]")
-  private Object smsForwardingApplication = null;
-  @SerializedName("sms_forwarding[extension]")
-  private Object smsForwardingExtension = null;
-  @SerializedName("call_notifications[emails]")
-  private List<String> callNotificationsEmails = null;
-  @SerializedName("call_notifications[sms]")
-  private String callNotificationsSms = null;
+  @SerializedName("caller_id")
+  private CallerIdPhoneNumber callerId = null;
+  @SerializedName("sms_forwarding")
+  private SmsForwardingParams smsForwarding = null;
+  @SerializedName("call_notifications")
+  private CallNotifications callNotifications = null;
 
   /**
    * Phone number
@@ -100,80 +94,36 @@ public class CreatePhoneNumberParams {
   }
 
   /**
-   * Caller ID name
+   * Caller ID object
    **/
-  @ApiModelProperty(value = "Caller ID name")
-  public String getCallerIdName() {
-    return callerIdName;
+  @ApiModelProperty(value = "Caller ID object")
+  public CallerIdPhoneNumber getCallerId() {
+    return callerId;
   }
-  public void setCallerIdName(String callerIdName) {
-    this.callerIdName = callerIdName;
+  public void setCallerId(CallerIdPhoneNumber callerId) {
+    this.callerId = callerId;
   }
 
   /**
-   * Caller ID type
+   * SMS Forwarding Object, or NULL
    **/
-  @ApiModelProperty(value = "Caller ID type")
-  public String getCallerIdType() {
-    return callerIdType;
+  @ApiModelProperty(value = "SMS Forwarding Object, or NULL")
+  public SmsForwardingParams getSmsForwarding() {
+    return smsForwarding;
   }
-  public void setCallerIdType(String callerIdType) {
-    this.callerIdType = callerIdType;
+  public void setSmsForwarding(SmsForwardingParams smsForwarding) {
+    this.smsForwarding = smsForwarding;
   }
 
   /**
-   * 'application' or 'extension'
+   * Call Notifications object
    **/
-  @ApiModelProperty(value = "'application' or 'extension'")
-  public String getSmsForwardingType() {
-    return smsForwardingType;
+  @ApiModelProperty(value = "Call Notifications object")
+  public CallNotifications getCallNotifications() {
+    return callNotifications;
   }
-  public void setSmsForwardingType(String smsForwardingType) {
-    this.smsForwardingType = smsForwardingType;
-  }
-
-  /**
-   * Application lookup object
-   **/
-  @ApiModelProperty(value = "Application lookup object")
-  public Object getSmsForwardingApplication() {
-    return smsForwardingApplication;
-  }
-  public void setSmsForwardingApplication(Object smsForwardingApplication) {
-    this.smsForwardingApplication = smsForwardingApplication;
-  }
-
-  /**
-   * Extension lookup object
-   **/
-  @ApiModelProperty(value = "Extension lookup object")
-  public Object getSmsForwardingExtension() {
-    return smsForwardingExtension;
-  }
-  public void setSmsForwardingExtension(Object smsForwardingExtension) {
-    this.smsForwardingExtension = smsForwardingExtension;
-  }
-
-  /**
-   * Call notifications for emails. Can be a single email or an array of emails
-   **/
-  @ApiModelProperty(value = "Call notifications for emails. Can be a single email or an array of emails")
-  public List<String> getCallNotificationsEmails() {
-    return callNotificationsEmails;
-  }
-  public void setCallNotificationsEmails(List<String> callNotificationsEmails) {
-    this.callNotificationsEmails = callNotificationsEmails;
-  }
-
-  /**
-   * Call notification for SMS
-   **/
-  @ApiModelProperty(value = "Call notification for SMS")
-  public String getCallNotificationsSms() {
-    return callNotificationsSms;
-  }
-  public void setCallNotificationsSms(String callNotificationsSms) {
-    this.callNotificationsSms = callNotificationsSms;
+  public void setCallNotifications(CallNotifications callNotifications) {
+    this.callNotifications = callNotifications;
   }
 
 
@@ -191,13 +141,9 @@ public class CreatePhoneNumberParams {
         (this.name == null ? createPhoneNumberParams.name == null : this.name.equals(createPhoneNumberParams.name)) &&
         (this.blockIncoming == null ? createPhoneNumberParams.blockIncoming == null : this.blockIncoming.equals(createPhoneNumberParams.blockIncoming)) &&
         (this.blockAnonymous == null ? createPhoneNumberParams.blockAnonymous == null : this.blockAnonymous.equals(createPhoneNumberParams.blockAnonymous)) &&
-        (this.callerIdName == null ? createPhoneNumberParams.callerIdName == null : this.callerIdName.equals(createPhoneNumberParams.callerIdName)) &&
-        (this.callerIdType == null ? createPhoneNumberParams.callerIdType == null : this.callerIdType.equals(createPhoneNumberParams.callerIdType)) &&
-        (this.smsForwardingType == null ? createPhoneNumberParams.smsForwardingType == null : this.smsForwardingType.equals(createPhoneNumberParams.smsForwardingType)) &&
-        (this.smsForwardingApplication == null ? createPhoneNumberParams.smsForwardingApplication == null : this.smsForwardingApplication.equals(createPhoneNumberParams.smsForwardingApplication)) &&
-        (this.smsForwardingExtension == null ? createPhoneNumberParams.smsForwardingExtension == null : this.smsForwardingExtension.equals(createPhoneNumberParams.smsForwardingExtension)) &&
-        (this.callNotificationsEmails == null ? createPhoneNumberParams.callNotificationsEmails == null : this.callNotificationsEmails.equals(createPhoneNumberParams.callNotificationsEmails)) &&
-        (this.callNotificationsSms == null ? createPhoneNumberParams.callNotificationsSms == null : this.callNotificationsSms.equals(createPhoneNumberParams.callNotificationsSms));
+        (this.callerId == null ? createPhoneNumberParams.callerId == null : this.callerId.equals(createPhoneNumberParams.callerId)) &&
+        (this.smsForwarding == null ? createPhoneNumberParams.smsForwarding == null : this.smsForwarding.equals(createPhoneNumberParams.smsForwarding)) &&
+        (this.callNotifications == null ? createPhoneNumberParams.callNotifications == null : this.callNotifications.equals(createPhoneNumberParams.callNotifications));
   }
 
   @Override
@@ -208,13 +154,9 @@ public class CreatePhoneNumberParams {
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.blockIncoming == null ? 0: this.blockIncoming.hashCode());
     result = 31 * result + (this.blockAnonymous == null ? 0: this.blockAnonymous.hashCode());
-    result = 31 * result + (this.callerIdName == null ? 0: this.callerIdName.hashCode());
-    result = 31 * result + (this.callerIdType == null ? 0: this.callerIdType.hashCode());
-    result = 31 * result + (this.smsForwardingType == null ? 0: this.smsForwardingType.hashCode());
-    result = 31 * result + (this.smsForwardingApplication == null ? 0: this.smsForwardingApplication.hashCode());
-    result = 31 * result + (this.smsForwardingExtension == null ? 0: this.smsForwardingExtension.hashCode());
-    result = 31 * result + (this.callNotificationsEmails == null ? 0: this.callNotificationsEmails.hashCode());
-    result = 31 * result + (this.callNotificationsSms == null ? 0: this.callNotificationsSms.hashCode());
+    result = 31 * result + (this.callerId == null ? 0: this.callerId.hashCode());
+    result = 31 * result + (this.smsForwarding == null ? 0: this.smsForwarding.hashCode());
+    result = 31 * result + (this.callNotifications == null ? 0: this.callNotifications.hashCode());
     return result;
   }
 
@@ -228,13 +170,9 @@ public class CreatePhoneNumberParams {
     sb.append("  name: ").append(name).append("\n");
     sb.append("  blockIncoming: ").append(blockIncoming).append("\n");
     sb.append("  blockAnonymous: ").append(blockAnonymous).append("\n");
-    sb.append("  callerIdName: ").append(callerIdName).append("\n");
-    sb.append("  callerIdType: ").append(callerIdType).append("\n");
-    sb.append("  smsForwardingType: ").append(smsForwardingType).append("\n");
-    sb.append("  smsForwardingApplication: ").append(smsForwardingApplication).append("\n");
-    sb.append("  smsForwardingExtension: ").append(smsForwardingExtension).append("\n");
-    sb.append("  callNotificationsEmails: ").append(callNotificationsEmails).append("\n");
-    sb.append("  callNotificationsSms: ").append(callNotificationsSms).append("\n");
+    sb.append("  callerId: ").append(callerId).append("\n");
+    sb.append("  smsForwarding: ").append(smsForwarding).append("\n");
+    sb.append("  callNotifications: ").append(callNotifications).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
