@@ -4,19 +4,19 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountPhoneNumber**](PhonenumbersApi.md#createAccountPhoneNumber) | **POST** /accounts/{account_id}/phone-numbers | Add a phone number to an account
-[**getAccountPhoneNumber**](PhonenumbersApi.md#getAccountPhoneNumber) | **GET** /accounts/{account_id}/phone-numbers/{number_id} | Show details of an individual phone number
-[**listAccountPhoneNumbers**](PhonenumbersApi.md#listAccountPhoneNumbers) | **GET** /accounts/{account_id}/phone-numbers | Get a list of phone numbers registered to an account
-[**replaceAccountPhoneNumber**](PhonenumbersApi.md#replaceAccountPhoneNumber) | **PUT** /accounts/{account_id}/phone-numbers/{number_id} | Update the settings for an existing phone number on your account
+[**createAccountPhoneNumber**](PhonenumbersApi.md#createAccountPhoneNumber) | **POST** /accounts/{account_id}/phone-numbers | Add a phone number to an account.
+[**getAccountPhoneNumber**](PhonenumbersApi.md#getAccountPhoneNumber) | **GET** /accounts/{account_id}/phone-numbers/{number_id} | Show details of an individual phone number.
+[**listAccountPhoneNumbers**](PhonenumbersApi.md#listAccountPhoneNumbers) | **GET** /accounts/{account_id}/phone-numbers | Get a list of phone numbers registered to an account.
+[**replaceAccountPhoneNumber**](PhonenumbersApi.md#replaceAccountPhoneNumber) | **PUT** /accounts/{account_id}/phone-numbers/{number_id} | Update the settings for an existing phone number on your account.
 
 
 <a name="createAccountPhoneNumber"></a>
 # **createAccountPhoneNumber**
 > PhoneNumberFull createAccountPhoneNumber(accountId, data)
 
-Add a phone number to an account
+Add a phone number to an account.
 
-See Intro to Account Phone Numbers for more info on the properties to use.
+Add a phone number to an account. See Account Phone Numbers for more info on the properties.
 
 ### Example
 ```java
@@ -59,9 +59,9 @@ Name | Type | Description  | Notes
 # **getAccountPhoneNumber**
 > PhoneNumberFull getAccountPhoneNumber(accountId, numberId)
 
-Show details of an individual phone number
+Show details of an individual phone number.
 
-See Intro to Account Phone Numbers for more info on the properties.
+Show details of an individual phone number. See Account Phone Numbers for more info on the properties.
 
 ### Example
 ```java
@@ -104,9 +104,9 @@ Name | Type | Description  | Notes
 # **listAccountPhoneNumbers**
 > ListPhoneNumbers listAccountPhoneNumbers(accountId, filtersId, filtersName, filtersPhoneNumber, sortId, sortName, sortPhoneNumber, limit, offset, fields)
 
-Get a list of phone numbers registered to an account
+Get a list of phone numbers registered to an account.
 
-See Intro to Account Phone Numbers for more info on the properties.
+Get a list of phone numbers registered to an account. See Account Phone Numbers for more info on the properties.
 
 ### Example
 ```java
@@ -165,9 +165,9 @@ Name | Type | Description  | Notes
 # **replaceAccountPhoneNumber**
 > PhoneNumberFull replaceAccountPhoneNumber(accountId, numberId, data)
 
-Update the settings for an existing phone number on your account
+Update the settings for an existing phone number on your account.
 
-See Intro to Account Phone Numbers for more info on the properties.
+Update the settings for an existing phone number on your account. See Account Phone Numbers for more info on the properties.
 
 ### Example
 ```java

@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateMenuParams;
-import io.swagger.client.model.DeleteMenu;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.ListMenus;
 import io.swagger.client.model.MenuFull;
 import io.swagger.client.model.ReplaceMenuParams;
@@ -60,8 +60,8 @@ public class MenusApi {
   }
 
   /**
-  * Create an individual menu
-  * This service creates an individual menu. See Account Menus for more info on the properties.
+  * Create an individual menu.
+  * Create an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param data Menu data
    * @return MenuFull
@@ -75,7 +75,7 @@ public class MenusApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/menus".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/menus".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -111,33 +111,31 @@ public class MenusApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Create an individual menu
-   * This service creates an individual menu. See Account Menus for more info on the properties.
+   * Create an individual menu.
+   * Create an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param data Menu data
   */
   public void createAccountMenu (Integer accountId, CreateMenuParams data, final Response.Listener<MenuFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMenu",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountMenu",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountMenu"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/menus".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -167,7 +165,7 @@ public class MenusApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -191,13 +189,13 @@ public class MenusApi {
     }
   }
   /**
-  * Delete an individual menu
-  * See Account Menus for more info on the properties.
+  * Delete an individual menu.
+  * Delete an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param menuId Menu ID
-   * @return DeleteMenu
+   * @return DeleteEntry
   */
-  public DeleteMenu deleteAccountMenu (Integer accountId, Integer menuId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DeleteEntry deleteAccountMenu (Integer accountId, Integer menuId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -211,7 +209,7 @@ public class MenusApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
+    String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -238,7 +236,7 @@ public class MenusApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (DeleteMenu) ApiInvoker.deserialize(localVarResponse, "", DeleteMenu.class);
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
       } else {
          return null;
       }
@@ -247,39 +245,36 @@ public class MenusApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Delete an individual menu
-   * See Account Menus for more info on the properties.
+   * Delete an individual menu.
+   * Delete an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param menuId Menu ID
   */
-  public void deleteAccountMenu (Integer accountId, Integer menuId, final Response.Listener<DeleteMenu> responseListener, final Response.ErrorListener errorListener) {
+  public void deleteAccountMenu (Integer accountId, Integer menuId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountMenu",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountMenu",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountMenu"));
     }
-    
     // verify the required parameter 'menuId' is set
     if (menuId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'menuId' when calling deleteAccountMenu",
-         new ApiException(400, "Missing the required parameter 'menuId' when calling deleteAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'menuId' when calling deleteAccountMenu",
+        new ApiException(400, "Missing the required parameter 'menuId' when calling deleteAccountMenu"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
@@ -309,7 +304,7 @@ public class MenusApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -317,7 +312,7 @@ public class MenusApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((DeleteMenu) ApiInvoker.deserialize(localVarResponse,  "", DeleteMenu.class));
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -333,8 +328,8 @@ public class MenusApi {
     }
   }
   /**
-  * Show details of an individual menu
-  * This service shows the details of an individual Menu.
+  * Show details of an individual menu.
+  * Show details of an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param menuId Menu ID
    * @return MenuFull
@@ -353,7 +348,7 @@ public class MenusApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
+    String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -389,39 +384,36 @@ public class MenusApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual menu
-   * This service shows the details of an individual Menu.
+   * Show details of an individual menu.
+   * Show details of an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param menuId Menu ID
   */
   public void getAccountMenu (Integer accountId, Integer menuId, final Response.Listener<MenuFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountMenu",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountMenu",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountMenu"));
     }
-    
     // verify the required parameter 'menuId' is set
     if (menuId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'menuId' when calling getAccountMenu",
-         new ApiException(400, "Missing the required parameter 'menuId' when calling getAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'menuId' when calling getAccountMenu",
+        new ApiException(400, "Missing the required parameter 'menuId' when calling getAccountMenu"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
@@ -451,7 +443,7 @@ public class MenusApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -475,8 +467,8 @@ public class MenusApi {
     }
   }
   /**
-  * Get a list of menus for an account
-  * See Account Menus for more info on the properties.
+  * Get a list of menus for an account.
+  * Get a list of menus for an account. See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -496,7 +488,7 @@ public class MenusApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/menus".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/menus".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -539,33 +531,31 @@ public class MenusApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of menus for an account
-   * See Account Menus for more info on the properties.
+   * Get a list of menus for an account.
+   * Get a list of menus for an account. See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountMenus (Integer accountId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListMenus> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountMenus",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountMenus"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountMenus",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountMenus"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/menus".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -602,7 +592,7 @@ public class MenusApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -626,8 +616,8 @@ public class MenusApi {
     }
   }
   /**
-  * Replace an individual menu
-  * See Account Menus for more info on the properties.
+  * Replace an individual menu.
+  * Replace an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID
    * @param menuId Menu ID
    * @param data Menu data
@@ -647,7 +637,7 @@ public class MenusApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
+    String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -683,39 +673,36 @@ public class MenusApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Replace an individual menu
-   * See Account Menus for more info on the properties.
+   * Replace an individual menu.
+   * Replace an individual menu. See Account Menus for more info on the properties.
    * @param accountId Account ID   * @param menuId Menu ID   * @param data Menu data
   */
   public void replaceAccountMenu (Integer accountId, Integer menuId, ReplaceMenuParams data, final Response.Listener<MenuFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountMenu",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountMenu",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountMenu"));
     }
-    
     // verify the required parameter 'menuId' is set
     if (menuId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'menuId' when calling replaceAccountMenu",
-         new ApiException(400, "Missing the required parameter 'menuId' when calling replaceAccountMenu"));
+      VolleyError error = new VolleyError("Missing the required parameter 'menuId' when calling replaceAccountMenu",
+        new ApiException(400, "Missing the required parameter 'menuId' when calling replaceAccountMenu"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/menus/{menu_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "menu_id" + "\\}", apiInvoker.escapeString(menuId.toString()));
@@ -745,7 +732,7 @@ public class MenusApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

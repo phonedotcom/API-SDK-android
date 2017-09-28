@@ -8,9 +8,9 @@ Method | HTTP request | Description
 [**createAccountMediaTts**](MediaApi.md#createAccountMediaTts) | **POST** /accounts/{account_id}/media/tts | Add a media object to your account that can be used as a greeting or hold music. Users may create a media by using the built-in Text-to-speech (TTS) facility or upload a file of their choice. (Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB)
 [**deleteAccountMedia**](MediaApi.md#deleteAccountMedia) | **DELETE** /accounts/{account_id}/media/{media_id} | Delete an individual media record
 [**getAccountMedia**](MediaApi.md#getAccountMedia) | **GET** /accounts/{account_id}/media/{media_id} | Show details of an individual media recording (Greeting or Hold Music)
-[**listAccountMedia**](MediaApi.md#listAccountMedia) | **GET** /accounts/{account_id}/media | Get a list of media recordings for an account
+[**listAccountMedia**](MediaApi.md#listAccountMedia) | **GET** /accounts/{account_id}/media | Get a list of media recordings for an account.
 [**replaceAccountMediaFiles**](MediaApi.md#replaceAccountMediaFiles) | **PUT** /accounts/{account_id}/media/files/{media_id} | Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB.
-[**replaceAccountMediaTts**](MediaApi.md#replaceAccountMediaTts) | **PUT** /accounts/{account_id}/media/tts/{media_id} | Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB.
+[**replaceAccountMediaTts**](MediaApi.md#replaceAccountMediaTts) | **PUT** /accounts/{account_id}/media/tts/{media_id} | Update a media object to your account.
 
 
 <a name="createAccountMediaFiles"></a>
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteAccountMedia"></a>
 # **deleteAccountMedia**
-> DeleteMedia deleteAccountMedia(accountId, mediaId)
+> DeleteEntry deleteAccountMedia(accountId, mediaId)
 
 Delete an individual media record
 
@@ -122,7 +122,7 @@ MediaApi apiInstance = new MediaApi();
 Integer accountId = 56; // Integer | Account ID
 Integer mediaId = 56; // Integer | Media ID
 try {
-    DeleteMedia result = apiInstance.deleteAccountMedia(accountId, mediaId);
+    DeleteEntry result = apiInstance.deleteAccountMedia(accountId, mediaId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling MediaApi#deleteAccountMedia");
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteMedia**](DeleteMedia.md)
+[**DeleteEntry**](DeleteEntry.md)
 
 ### Authorization
 
@@ -199,9 +199,9 @@ Name | Type | Description  | Notes
 # **listAccountMedia**
 > ListMedia listAccountMedia(accountId, filtersId, filtersName, sortId, sortName, limit, offset, fields)
 
-Get a list of media recordings for an account
+Get a list of media recordings for an account.
 
-See Account Menus for more info on the properties.
+Get a list of media recordings for an account. See Account Media for more info on the properties. Note: This API is for users with Account Owner scope access token. Users with Extension User scope token should invoke the Extension level List Media API with the following definition: GET https://api.phone.com/v4/accounts/:account_id/extensions/:extension_id/media
 
 ### Example
 ```java
@@ -298,16 +298,16 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 <a name="replaceAccountMediaTts"></a>
 # **replaceAccountMediaTts**
 > MediaFull replaceAccountMediaTts(accountId, mediaId, data)
 
-Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB.
+Update a media object to your account.
 
-See Account Media for more info on the properties.
+Update a media object to your account. Note: The maximum size for media files or JSON objects included with a POST or PUT request is 10 MB. See Account Media for more info on the properties. Note: This API is for users with Account Owner scope access token. Users with Extension User scope token should invoke the Extension level Replace Media API with the following definition: PUT https://api.phone.com/v4/accounts/:account_id/extensions/:extension_id/media/:media_id
 
 ### Example
 ```java

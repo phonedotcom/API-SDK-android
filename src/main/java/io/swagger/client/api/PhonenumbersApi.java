@@ -59,8 +59,8 @@ public class PhonenumbersApi {
   }
 
   /**
-  * Add a phone number to an account
-  * See Intro to Account Phone Numbers for more info on the properties to use.
+  * Add a phone number to an account.
+  * Add a phone number to an account. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID
    * @param data Phone Number data
    * @return PhoneNumberFull
@@ -74,7 +74,7 @@ public class PhonenumbersApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/phone-numbers".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/phone-numbers".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -110,33 +110,31 @@ public class PhonenumbersApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Add a phone number to an account
-   * See Intro to Account Phone Numbers for more info on the properties to use.
+   * Add a phone number to an account.
+   * Add a phone number to an account. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID   * @param data Phone Number data
   */
   public void createAccountPhoneNumber (Integer accountId, CreatePhoneNumberParams data, final Response.Listener<PhoneNumberFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountPhoneNumber",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountPhoneNumber"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountPhoneNumber",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountPhoneNumber"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/phone-numbers".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -166,7 +164,7 @@ public class PhonenumbersApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -190,8 +188,8 @@ public class PhonenumbersApi {
     }
   }
   /**
-  * Show details of an individual phone number
-  * See Intro to Account Phone Numbers for more info on the properties.
+  * Show details of an individual phone number.
+  * Show details of an individual phone number. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID
    * @param numberId Number ID
    * @return PhoneNumberFull
@@ -210,7 +208,7 @@ public class PhonenumbersApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/phone-numbers/{number_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "number_id" + "\\}", apiInvoker.escapeString(numberId.toString()));
+    String path = "/accounts/{account_id}/phone-numbers/{number_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "number_id" + "\\}", apiInvoker.escapeString(numberId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -246,39 +244,36 @@ public class PhonenumbersApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual phone number
-   * See Intro to Account Phone Numbers for more info on the properties.
+   * Show details of an individual phone number.
+   * Show details of an individual phone number. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID   * @param numberId Number ID
   */
   public void getAccountPhoneNumber (Integer accountId, Integer numberId, final Response.Listener<PhoneNumberFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountPhoneNumber",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountPhoneNumber"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountPhoneNumber",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountPhoneNumber"));
     }
-    
     // verify the required parameter 'numberId' is set
     if (numberId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'numberId' when calling getAccountPhoneNumber",
-         new ApiException(400, "Missing the required parameter 'numberId' when calling getAccountPhoneNumber"));
+      VolleyError error = new VolleyError("Missing the required parameter 'numberId' when calling getAccountPhoneNumber",
+        new ApiException(400, "Missing the required parameter 'numberId' when calling getAccountPhoneNumber"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/phone-numbers/{number_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "number_id" + "\\}", apiInvoker.escapeString(numberId.toString()));
@@ -308,7 +303,7 @@ public class PhonenumbersApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -332,8 +327,8 @@ public class PhonenumbersApi {
     }
   }
   /**
-  * Get a list of phone numbers registered to an account
-  * See Intro to Account Phone Numbers for more info on the properties.
+  * Get a list of phone numbers registered to an account.
+  * Get a list of phone numbers registered to an account. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -355,7 +350,7 @@ public class PhonenumbersApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/phone-numbers".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/phone-numbers".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -400,33 +395,31 @@ public class PhonenumbersApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of phone numbers registered to an account
-   * See Intro to Account Phone Numbers for more info on the properties.
+   * Get a list of phone numbers registered to an account.
+   * Get a list of phone numbers registered to an account. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param filtersPhoneNumber Phone number filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param sortPhoneNumber Phone number sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountPhoneNumbers (Integer accountId, List<String> filtersId, List<String> filtersName, List<String> filtersPhoneNumber, String sortId, String sortName, String sortPhoneNumber, Integer limit, Integer offset, String fields, final Response.Listener<ListPhoneNumbers> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountPhoneNumbers",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountPhoneNumbers"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountPhoneNumbers",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountPhoneNumbers"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/phone-numbers".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -465,7 +458,7 @@ public class PhonenumbersApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -489,8 +482,8 @@ public class PhonenumbersApi {
     }
   }
   /**
-  * Update the settings for an existing phone number on your account
-  * See Intro to Account Phone Numbers for more info on the properties.
+  * Update the settings for an existing phone number on your account.
+  * Update the settings for an existing phone number on your account. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID
    * @param numberId Number ID
    * @param data Phone Number data
@@ -510,7 +503,7 @@ public class PhonenumbersApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/phone-numbers/{number_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "number_id" + "\\}", apiInvoker.escapeString(numberId.toString()));
+    String path = "/accounts/{account_id}/phone-numbers/{number_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "number_id" + "\\}", apiInvoker.escapeString(numberId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -546,39 +539,36 @@ public class PhonenumbersApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Update the settings for an existing phone number on your account
-   * See Intro to Account Phone Numbers for more info on the properties.
+   * Update the settings for an existing phone number on your account.
+   * Update the settings for an existing phone number on your account. See Account Phone Numbers for more info on the properties.
    * @param accountId Account ID   * @param numberId Number ID   * @param data Phone Number data
   */
   public void replaceAccountPhoneNumber (Integer accountId, Integer numberId, ReplacePhoneNumberParams data, final Response.Listener<PhoneNumberFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountPhoneNumber",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountPhoneNumber"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountPhoneNumber",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountPhoneNumber"));
     }
-    
     // verify the required parameter 'numberId' is set
     if (numberId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'numberId' when calling replaceAccountPhoneNumber",
-         new ApiException(400, "Missing the required parameter 'numberId' when calling replaceAccountPhoneNumber"));
+      VolleyError error = new VolleyError("Missing the required parameter 'numberId' when calling replaceAccountPhoneNumber",
+        new ApiException(400, "Missing the required parameter 'numberId' when calling replaceAccountPhoneNumber"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/phone-numbers/{number_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "number_id" + "\\}", apiInvoker.escapeString(numberId.toString()));
@@ -608,7 +598,7 @@ public class PhonenumbersApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

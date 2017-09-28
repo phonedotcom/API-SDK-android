@@ -4,19 +4,20 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountDevice**](DevicesApi.md#createAccountDevice) | **POST** /accounts/{account_id}/devices | Register a generic VoIP device
-[**getAccountDevice**](DevicesApi.md#getAccountDevice) | **GET** /accounts/{account_id}/devices/{device_id} | Show details of an individual VoIP device
-[**listAccountDevices**](DevicesApi.md#listAccountDevices) | **GET** /accounts/{account_id}/devices | Get a list of VoIP devices associated with your account
-[**replaceAccountDevice**](DevicesApi.md#replaceAccountDevice) | **PUT** /accounts/{account_id}/devices/{device_id} | Update the settings for an individual VoIP device
+[**createAccountDevice**](DevicesApi.md#createAccountDevice) | **POST** /accounts/{account_id}/devices | Register a generic VoIP device.
+[**deleteAccountDevice**](DevicesApi.md#deleteAccountDevice) | **DELETE** /accounts/{account_id}/devices/{device_id} | Delete a VoIP device.
+[**getAccountDevice**](DevicesApi.md#getAccountDevice) | **GET** /accounts/{account_id}/devices/{device_id} | Show details of an individual VoIP device.
+[**listAccountDevices**](DevicesApi.md#listAccountDevices) | **GET** /accounts/{account_id}/devices | Get a list of VoIP devices associated with your account.
+[**replaceAccountDevice**](DevicesApi.md#replaceAccountDevice) | **PUT** /accounts/{account_id}/devices/{device_id} | Update the details of an individual VoIP device.
 
 
 <a name="createAccountDevice"></a>
 # **createAccountDevice**
 > DeviceFull createAccountDevice(accountId, data)
 
-Register a generic VoIP device
+Register a generic VoIP device.
 
-
+Register a generic VoIP device. See Devices for more detail.
 
 ### Example
 ```java
@@ -55,13 +56,58 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="deleteAccountDevice"></a>
+# **deleteAccountDevice**
+> DeleteEntry deleteAccountDevice(accountId, deviceId)
+
+Delete a VoIP device.
+
+Delete a VoIP device. See Devices for more detail.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.api.DevicesApi;
+
+DevicesApi apiInstance = new DevicesApi();
+Integer accountId = 56; // Integer | Account ID
+Integer deviceId = 56; // Integer | Device ID
+try {
+    DeleteEntry result = apiInstance.deleteAccountDevice(accountId, deviceId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DevicesApi#deleteAccountDevice");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountId** | **Integer**| Account ID |
+ **deviceId** | **Integer**| Device ID |
+
+### Return type
+
+[**DeleteEntry**](DeleteEntry.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getAccountDevice"></a>
 # **getAccountDevice**
 > DeviceFull getAccountDevice(accountId, deviceId)
 
-Show details of an individual VoIP device
+Show details of an individual VoIP device.
 
-
+Show details of an individual VoIP device. See Devices for more detail.
 
 ### Example
 ```java
@@ -104,9 +150,9 @@ Name | Type | Description  | Notes
 # **listAccountDevices**
 > ListDevices listAccountDevices(accountId, filtersId, filtersName, sortId, sortName, limit, offset, fields)
 
-Get a list of VoIP devices associated with your account
+Get a list of VoIP devices associated with your account.
 
-
+Get a list of VoIP devices associated with your account. See Devices for more detail.
 
 ### Example
 ```java
@@ -161,9 +207,9 @@ Name | Type | Description  | Notes
 # **replaceAccountDevice**
 > DeviceFull replaceAccountDevice(accountId, deviceId, data)
 
-Update the settings for an individual VoIP device
+Update the details of an individual VoIP device.
 
-
+Update the details of an individual VoIP device. See Devices for more detail.
 
 ### Example
 ```java

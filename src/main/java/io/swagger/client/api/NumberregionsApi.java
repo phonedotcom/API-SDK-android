@@ -82,7 +82,7 @@ public class NumberregionsApi {
     Object postBody = null;
 
     // create path and map variables
-    String path = "/phone-numbers/available/regions".replaceAll("\\{format\\}","json");
+    String path = "/phone-numbers/available/regions";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -136,15 +136,15 @@ public class NumberregionsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
@@ -156,7 +156,6 @@ public class NumberregionsApi {
   public void listAvailablePhoneNumberRegions (List<String> filtersCountryCode, List<String> filtersNpa, List<String> filtersNxx, List<String> filtersIsTollFree, List<String> filtersCity, List<String> filtersProvincePostalCode, List<String> filtersCountryPostalCode, String sortCountryCode, String sortNpa, String sortNxx, String sortIsTollFree, String sortCity, String sortProvincePostalCode, String sortCountryPostalCode, Integer limit, Integer offset, String fields, List<String> groupBy, final Response.Listener<ListPhoneNumbersRegions> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
 
     // create path and map variables
     String path = "/phone-numbers/available/regions".replaceAll("\\{format\\}","json");
@@ -204,7 +203,7 @@ public class NumberregionsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

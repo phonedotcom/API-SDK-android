@@ -59,9 +59,9 @@ public class SubaccountsApi {
 
   /**
   * Add a subaccount for the authenticated user or client
-  * This service shows the details of an individual Subaccount.
+  * Add a subaccount for the authenticated user or client
    * @param accountId Account ID
-   * @param data SMS data
+   * @param data Subaccount data
    * @return AccountFull
   */
   public AccountFull createAccountSubaccount (Integer accountId, CreateSubaccountParams data) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -78,7 +78,7 @@ public class SubaccountsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/subaccounts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/subaccounts".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -114,39 +114,36 @@ public class SubaccountsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
    * Add a subaccount for the authenticated user or client
-   * This service shows the details of an individual Subaccount.
-   * @param accountId Account ID   * @param data SMS data
+   * Add a subaccount for the authenticated user or client
+   * @param accountId Account ID   * @param data Subaccount data
   */
   public void createAccountSubaccount (Integer accountId, CreateSubaccountParams data, final Response.Listener<AccountFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountSubaccount",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountSubaccount"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountSubaccount",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountSubaccount"));
     }
-    
     // verify the required parameter 'data' is set
     if (data == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'data' when calling createAccountSubaccount",
-         new ApiException(400, "Missing the required parameter 'data' when calling createAccountSubaccount"));
+      VolleyError error = new VolleyError("Missing the required parameter 'data' when calling createAccountSubaccount",
+        new ApiException(400, "Missing the required parameter 'data' when calling createAccountSubaccount"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/subaccounts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -176,7 +173,7 @@ public class SubaccountsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -201,7 +198,7 @@ public class SubaccountsApi {
   }
   /**
   * Get a list of subaccounts for the authenticated user or client
-  * This service lists the Subaccount of the authenticated client. In most cases, there will not be any.
+  * Get a list of subaccounts for the authenticated user or client
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param sortId ID sorting
@@ -219,7 +216,7 @@ public class SubaccountsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/subaccounts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/subaccounts".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -260,33 +257,31 @@ public class SubaccountsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
    * Get a list of subaccounts for the authenticated user or client
-   * This service lists the Subaccount of the authenticated client. In most cases, there will not be any.
+   * Get a list of subaccounts for the authenticated user or client
    * @param accountId Account ID   * @param filtersId ID filter   * @param sortId ID sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountSubaccounts (Integer accountId, List<String> filtersId, String sortId, Integer limit, Integer offset, String fields, final Response.Listener<ListAccounts> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountSubaccounts",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountSubaccounts"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountSubaccounts",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountSubaccounts"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/subaccounts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -321,7 +316,7 @@ public class SubaccountsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

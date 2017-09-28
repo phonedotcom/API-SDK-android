@@ -4,19 +4,19 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountExtension**](ExtensionsApi.md#createAccountExtension) | **POST** /accounts/{account_id}/extensions | Create an individual extension
-[**getAccountExtension**](ExtensionsApi.md#getAccountExtension) | **GET** /accounts/{account_id}/extensions/{extension_id} | Show details of an individual extension
-[**listAccountExtensions**](ExtensionsApi.md#listAccountExtensions) | **GET** /accounts/{account_id}/extensions | Get a list of extensions visible to the authenticated user or client
-[**replaceAccountExtension**](ExtensionsApi.md#replaceAccountExtension) | **PUT** /accounts/{account_id}/extensions/{extension_id} | Replace an individual extension
+[**createAccountExtension**](ExtensionsApi.md#createAccountExtension) | **POST** /accounts/{account_id}/extensions | Create an individual extension.
+[**getAccountExtension**](ExtensionsApi.md#getAccountExtension) | **GET** /accounts/{account_id}/extensions/{extension_id} | Show details of an individual extension.
+[**listAccountExtensions**](ExtensionsApi.md#listAccountExtensions) | **GET** /accounts/{account_id}/extensions | Get a list of extensions visible to the authenticated user or client.
+[**replaceAccountExtension**](ExtensionsApi.md#replaceAccountExtension) | **PUT** /accounts/{account_id}/extensions/{extension_id} | Replace an individual extension.
 
 
 <a name="createAccountExtension"></a>
 # **createAccountExtension**
 > ExtensionFull createAccountExtension(accountId, data)
 
-Create an individual extension
+Create an individual extension.
 
-This service shows how to create a virtual extension.
+Create an individual extension. See extension for more details.
 
 ### Example
 ```java
@@ -59,9 +59,9 @@ Name | Type | Description  | Notes
 # **getAccountExtension**
 > ExtensionFull getAccountExtension(accountId, extensionId)
 
-Show details of an individual extension
+Show details of an individual extension.
 
-This service shows the details of an individual Extension.
+Show details of an individual extension. See extension for more details.
 
 ### Example
 ```java
@@ -104,9 +104,9 @@ Name | Type | Description  | Notes
 # **listAccountExtensions**
 > ListExtensions listAccountExtensions(accountId, filtersId, filtersExtension, filtersName, sortId, sortExtension, sortName, limit, offset, fields)
 
-Get a list of extensions visible to the authenticated user or client
+Get a list of extensions visible to the authenticated user or client.
 
-This service lists the visible extensions on a given account.
+Get a list of extensions visible to the authenticated user or client. See extension for more details.
 
 ### Example
 ```java
@@ -165,9 +165,9 @@ Name | Type | Description  | Notes
 # **replaceAccountExtension**
 > ExtensionFull replaceAccountExtension(accountId, extensionId, data)
 
-Replace an individual extension
+Replace an individual extension.
 
-This service shows how to update an individual extension.
+Replace an individual extension. See extension for more details.
 
 ### Example
 ```java

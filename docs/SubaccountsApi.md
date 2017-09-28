@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Add a subaccount for the authenticated user or client
 
-This service shows the details of an individual Subaccount.
+Add a subaccount for the authenticated user or client
 
 ### Example
 ```java
@@ -23,7 +23,7 @@ This service shows the details of an individual Subaccount.
 
 SubaccountsApi apiInstance = new SubaccountsApi();
 Integer accountId = 56; // Integer | Account ID
-CreateSubaccountParams data = new CreateSubaccountParams(); // CreateSubaccountParams | SMS data
+CreateSubaccountParams data = new CreateSubaccountParams(); // CreateSubaccountParams | Subaccount data
 try {
     AccountFull result = apiInstance.createAccountSubaccount(accountId, data);
     System.out.println(result);
@@ -38,7 +38,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **Integer**| Account ID |
- **data** | [**CreateSubaccountParams**](CreateSubaccountParams.md)| SMS data |
+ **data** | [**CreateSubaccountParams**](CreateSubaccountParams.md)| Subaccount data |
 
 ### Return type
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 Get a list of subaccounts for the authenticated user or client
 
-This service lists the Subaccount of the authenticated client. In most cases, there will not be any.
+Get a list of subaccounts for the authenticated user or client
 
 ### Example
 ```java

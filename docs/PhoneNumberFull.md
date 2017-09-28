@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **blockIncoming** | **Boolean** | Whether to block incoming calls. Boolean. |  [optional]
 **blockAnonymous** | **Boolean** | Whether to block anonymous calls. Boolean. |  [optional]
 **route** | [**RouteSummary**](RouteSummary.md) | The Route assigned to handle incoming calls for this number, if any. Output is a Route Summary Object, or NULL if not set. Input can be a Route Lookup Object or NULL to unset. |  [optional]
-**callerId** | [**CallerIdPhoneNumber**](CallerIdPhoneNumber.md) | Caller ID Object, or NULL |  [optional]
-**smsForwarding** | [**SmsForwarding**](SmsForwarding.md) | SMS Forwarding Object, or NULL |  [optional]
+**callerId** | [**CallerIdPhoneNumber**](CallerIdPhoneNumber.md) |  |  [optional]
+**smsForwarding** | [**SmsForwarding**](SmsForwarding.md) |  |  [optional]
 **callNotifications** | [**CallNotifications**](CallNotifications.md) |  |  [optional]
 
 

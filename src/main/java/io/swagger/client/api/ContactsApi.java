@@ -25,7 +25,7 @@ import com.android.volley.VolleyError;
 
 import io.swagger.client.model.ContactFull;
 import io.swagger.client.model.CreateContactParams;
-import io.swagger.client.model.DeleteContact;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.ListContacts;
 
 import org.apache.http.HttpEntity;
@@ -59,8 +59,8 @@ public class ContactsApi {
   }
 
   /**
-  * Add a new address book contact for an extension
-  * For more on the input fields, see Account Contacts.
+  * Add a new address book contact for an extension.
+  * Add a new address book contact for an extension. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param data Contact data
@@ -80,7 +80,7 @@ public class ContactsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -116,39 +116,36 @@ public class ContactsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Add a new address book contact for an extension
-   * For more on the input fields, see Account Contacts.
+   * Add a new address book contact for an extension.
+   * Add a new address book contact for an extension. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param data Contact data
   */
   public void createAccountExtensionContact (Integer accountId, Integer extensionId, CreateContactParams data, final Response.Listener<ContactFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountExtensionContact"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling createAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling createAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling createAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling createAccountExtensionContact"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contacts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -178,7 +175,7 @@ public class ContactsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -202,14 +199,14 @@ public class ContactsApi {
     }
   }
   /**
-  * 
-  * 
+  * Delete a contact from the address book.
+  * Delete a contact from the address book. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param contactId Contact ID
-   * @return DeleteContact
+   * @return DeleteEntry
   */
-  public DeleteContact deleteAccountExtensionContact (Integer accountId, Integer extensionId, Integer contactId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DeleteEntry deleteAccountExtensionContact (Integer accountId, Integer extensionId, Integer contactId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -228,7 +225,7 @@ public class ContactsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -255,7 +252,7 @@ public class ContactsApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (DeleteContact) ApiInvoker.deserialize(localVarResponse, "", DeleteContact.class);
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
       } else {
          return null;
       }
@@ -264,45 +261,41 @@ public class ContactsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * 
+   * Delete a contact from the address book.
+   * Delete a contact from the address book. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param contactId Contact ID
   */
-  public void deleteAccountExtensionContact (Integer accountId, Integer extensionId, Integer contactId, final Response.Listener<DeleteContact> responseListener, final Response.ErrorListener errorListener) {
+  public void deleteAccountExtensionContact (Integer accountId, Integer extensionId, Integer contactId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountExtensionContact"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling deleteAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling deleteAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling deleteAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling deleteAccountExtensionContact"));
     }
-    
     // verify the required parameter 'contactId' is set
     if (contactId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'contactId' when calling deleteAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'contactId' when calling deleteAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'contactId' when calling deleteAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'contactId' when calling deleteAccountExtensionContact"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
@@ -332,7 +325,7 @@ public class ContactsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -340,7 +333,7 @@ public class ContactsApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((DeleteContact) ApiInvoker.deserialize(localVarResponse,  "", DeleteContact.class));
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -356,8 +349,8 @@ public class ContactsApi {
     }
   }
   /**
-  * Retrieve the details of an address book contact
-  * For more info on the fields shown, see Account Contacts.
+  * Retrieve the details of an address book contact.
+  * Retrieve the details of an address book contact. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param contactId Contact ID
@@ -382,7 +375,7 @@ public class ContactsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -418,45 +411,41 @@ public class ContactsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Retrieve the details of an address book contact
-   * For more info on the fields shown, see Account Contacts.
+   * Retrieve the details of an address book contact.
+   * Retrieve the details of an address book contact. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param contactId Contact ID
   */
   public void getAccountExtensionContact (Integer accountId, Integer extensionId, Integer contactId, final Response.Listener<ContactFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExtensionContact"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling getAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling getAccountExtensionContact"));
     }
-    
     // verify the required parameter 'contactId' is set
     if (contactId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'contactId' when calling getAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'contactId' when calling getAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'contactId' when calling getAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'contactId' when calling getAccountExtensionContact"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
@@ -486,7 +475,7 @@ public class ContactsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -510,8 +499,8 @@ public class ContactsApi {
     }
   }
   /**
-  * Show a list of address book contacts
-  * See Account Contacts for more info on the fields in each item.
+  * Show the Caller ID options a given extension can use.
+  * Show the Caller ID options a given extension can use. See Intro to Caller IDs for more on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param filtersId ID filter
@@ -538,7 +527,7 @@ public class ContactsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -582,39 +571,36 @@ public class ContactsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show a list of address book contacts
-   * See Account Contacts for more info on the fields in each item.
+   * Show the Caller ID options a given extension can use.
+   * Show the Caller ID options a given extension can use. See Intro to Caller IDs for more on the properties.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param filtersId ID filter   * @param filtersGroupId Group filter   * @param filtersUpdatedAt Updated At filter   * @param sortId ID sorting   * @param sortUpdatedAt Updated At sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountExtensionContacts (Integer accountId, Integer extensionId, List<String> filtersId, List<String> filtersGroupId, List<String> filtersUpdatedAt, String sortId, String sortUpdatedAt, Integer limit, Integer offset, String fields, final Response.Listener<ListContacts> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExtensionContacts",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExtensionContacts"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExtensionContacts",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExtensionContacts"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling listAccountExtensionContacts",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling listAccountExtensionContacts"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling listAccountExtensionContacts",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling listAccountExtensionContacts"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contacts".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -652,7 +638,7 @@ public class ContactsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -676,8 +662,8 @@ public class ContactsApi {
     }
   }
   /**
-  * 
-  * For more on the input fields, see Account Contacts.
+  * Update the info of a contact in the address book.
+  * Update the info of a contact in the address book. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param contactId Contact ID
@@ -703,7 +689,7 @@ public class ContactsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -739,45 +725,41 @@ public class ContactsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * For more on the input fields, see Account Contacts.
+   * Update the info of a contact in the address book.
+   * Update the info of a contact in the address book. See Account Contacts for more info on the fields in each item.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param contactId Contact ID   * @param data Contact data
   */
   public void replaceAccountExtensionContact (Integer accountId, Integer extensionId, Integer contactId, CreateContactParams data, final Response.Listener<ContactFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountExtensionContact"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling replaceAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling replaceAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling replaceAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling replaceAccountExtensionContact"));
     }
-    
     // verify the required parameter 'contactId' is set
     if (contactId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'contactId' when calling replaceAccountExtensionContact",
-         new ApiException(400, "Missing the required parameter 'contactId' when calling replaceAccountExtensionContact"));
+      VolleyError error = new VolleyError("Missing the required parameter 'contactId' when calling replaceAccountExtensionContact",
+        new ApiException(400, "Missing the required parameter 'contactId' when calling replaceAccountExtensionContact"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "contact_id" + "\\}", apiInvoker.escapeString(contactId.toString()));
@@ -807,7 +789,7 @@ public class ContactsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

@@ -57,8 +57,8 @@ public class ApplicationsApi {
   }
 
   /**
-  * Show details of an individual application
-  * 
+  * Show details of an individual Application on a given account.
+  * Show details of an individual Application on a given account.
    * @param accountId Account ID
    * @param applicationId Application ID
    * @return ApplicationFull
@@ -77,7 +77,7 @@ public class ApplicationsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/applications/{application_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "application_id" + "\\}", apiInvoker.escapeString(applicationId.toString()));
+    String path = "/accounts/{account_id}/applications/{application_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "application_id" + "\\}", apiInvoker.escapeString(applicationId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -113,39 +113,36 @@ public class ApplicationsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual application
-   * 
+   * Show details of an individual Application on a given account.
+   * Show details of an individual Application on a given account.
    * @param accountId Account ID   * @param applicationId Application ID
   */
   public void getAccountApplication (Integer accountId, Integer applicationId, final Response.Listener<ApplicationFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountApplication",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountApplication"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountApplication",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountApplication"));
     }
-    
     // verify the required parameter 'applicationId' is set
     if (applicationId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'applicationId' when calling getAccountApplication",
-         new ApiException(400, "Missing the required parameter 'applicationId' when calling getAccountApplication"));
+      VolleyError error = new VolleyError("Missing the required parameter 'applicationId' when calling getAccountApplication",
+        new ApiException(400, "Missing the required parameter 'applicationId' when calling getAccountApplication"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/applications/{application_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "application_id" + "\\}", apiInvoker.escapeString(applicationId.toString()));
@@ -175,7 +172,7 @@ public class ApplicationsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -199,8 +196,8 @@ public class ApplicationsApi {
     }
   }
   /**
-  * Get a list of applications you have defined
-  * Get a list of an account available applications
+  * This service lists the Applications on a given account
+  * Show details of an individual Application on a given account.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -220,7 +217,7 @@ public class ApplicationsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/applications".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/applications".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -263,33 +260,31 @@ public class ApplicationsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of applications you have defined
-   * Get a list of an account available applications
+   * This service lists the Applications on a given account
+   * Show details of an individual Application on a given account.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountApplications (Integer accountId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListApplications> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountApplications",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountApplications"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountApplications",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountApplications"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/applications".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -326,7 +321,7 @@ public class ApplicationsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

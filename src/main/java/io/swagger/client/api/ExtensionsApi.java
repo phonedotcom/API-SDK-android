@@ -59,8 +59,8 @@ public class ExtensionsApi {
   }
 
   /**
-  * Create an individual extension
-  * This service shows how to create a virtual extension.
+  * Create an individual extension.
+  * Create an individual extension. See extension for more details.
    * @param accountId Account ID
    * @param data Account Extensions Data
    * @return ExtensionFull
@@ -74,7 +74,7 @@ public class ExtensionsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/extensions".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -110,33 +110,31 @@ public class ExtensionsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Create an individual extension
-   * This service shows how to create a virtual extension.
+   * Create an individual extension.
+   * Create an individual extension. See extension for more details.
    * @param accountId Account ID   * @param data Account Extensions Data
   */
   public void createAccountExtension (Integer accountId, CreateExtensionParams data, final Response.Listener<ExtensionFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountExtension",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountExtension"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountExtension",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountExtension"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -166,7 +164,7 @@ public class ExtensionsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -190,8 +188,8 @@ public class ExtensionsApi {
     }
   }
   /**
-  * Show details of an individual extension
-  * This service shows the details of an individual Extension.
+  * Show details of an individual extension.
+  * Show details of an individual extension. See extension for more details.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @return ExtensionFull
@@ -210,7 +208,7 @@ public class ExtensionsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -246,39 +244,36 @@ public class ExtensionsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual extension
-   * This service shows the details of an individual Extension.
+   * Show details of an individual extension.
+   * Show details of an individual extension. See extension for more details.
    * @param accountId Account ID   * @param extensionId Extension ID
   */
   public void getAccountExtension (Integer accountId, Integer extensionId, final Response.Listener<ExtensionFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExtension",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExtension"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExtension",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExtension"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getAccountExtension",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling getAccountExtension"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getAccountExtension",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling getAccountExtension"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -308,7 +303,7 @@ public class ExtensionsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -332,8 +327,8 @@ public class ExtensionsApi {
     }
   }
   /**
-  * Get a list of extensions visible to the authenticated user or client
-  * This service lists the visible extensions on a given account.
+  * Get a list of extensions visible to the authenticated user or client.
+  * Get a list of extensions visible to the authenticated user or client. See extension for more details.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersExtension Extension filter
@@ -355,7 +350,7 @@ public class ExtensionsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/extensions".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -400,33 +395,31 @@ public class ExtensionsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of extensions visible to the authenticated user or client
-   * This service lists the visible extensions on a given account.
+   * Get a list of extensions visible to the authenticated user or client.
+   * Get a list of extensions visible to the authenticated user or client. See extension for more details.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersExtension Extension filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortExtension Extension sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountExtensions (Integer accountId, List<String> filtersId, List<String> filtersExtension, List<String> filtersName, String sortId, String sortExtension, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListExtensions> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExtensions",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExtensions"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExtensions",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExtensions"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -465,7 +458,7 @@ public class ExtensionsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -489,8 +482,8 @@ public class ExtensionsApi {
     }
   }
   /**
-  * Replace an individual extension
-  * This service shows how to update an individual extension.
+  * Replace an individual extension.
+  * Replace an individual extension. See extension for more details.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param data Account Extensions Data
@@ -510,7 +503,7 @@ public class ExtensionsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -546,39 +539,36 @@ public class ExtensionsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Replace an individual extension
-   * This service shows how to update an individual extension.
+   * Replace an individual extension.
+   * Replace an individual extension. See extension for more details.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param data Account Extensions Data
   */
   public void replaceAccountExtension (Integer accountId, Integer extensionId, ReplaceExtensionParams data, final Response.Listener<ExtensionFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountExtension",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountExtension"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountExtension",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountExtension"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling replaceAccountExtension",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling replaceAccountExtension"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling replaceAccountExtension",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling replaceAccountExtension"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -608,7 +598,7 @@ public class ExtensionsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

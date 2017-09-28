@@ -4,20 +4,20 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountExtensionContactGroup**](GroupsApi.md#createAccountExtensionContactGroup) | **POST** /accounts/{account_id}/extensions/{extension_id}/contact-groups | 
-[**deleteAccountExtensionContactGroup**](GroupsApi.md#deleteAccountExtensionContactGroup) | **DELETE** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | Delete an addressbook group
-[**getAccountExtensionContactGroup**](GroupsApi.md#getAccountExtensionContactGroup) | **GET** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | 
-[**listAccountExtensionContactGroups**](GroupsApi.md#listAccountExtensionContactGroups) | **GET** /accounts/{account_id}/extensions/{extension_id}/contact-groups | Show a list of contact groups belonging to an extension
-[**replaceAccountExtensionContactGroup**](GroupsApi.md#replaceAccountExtensionContactGroup) | **PUT** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | 
+[**createAccountExtensionContactGroup**](GroupsApi.md#createAccountExtensionContactGroup) | **POST** /accounts/{account_id}/extensions/{extension_id}/contact-groups | Add a new contact group to an account extension.
+[**deleteAccountExtensionContactGroup**](GroupsApi.md#deleteAccountExtensionContactGroup) | **DELETE** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | Delete a contact group from the address book.
+[**getAccountExtensionContactGroup**](GroupsApi.md#getAccountExtensionContactGroup) | **GET** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | Retrieve the information of a contact group.
+[**listAccountExtensionContactGroups**](GroupsApi.md#listAccountExtensionContactGroups) | **GET** /accounts/{account_id}/extensions/{extension_id}/contact-groups | Show a list of contact groups belonging to an extension.
+[**replaceAccountExtensionContactGroup**](GroupsApi.md#replaceAccountExtensionContactGroup) | **PUT** /accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id} | Update the information of a contact group.
 
 
 <a name="createAccountExtensionContactGroup"></a>
 # **createAccountExtensionContactGroup**
 > GroupFull createAccountExtensionContactGroup(accountId, extensionId, data)
 
+Add a new contact group to an account extension.
 
-
-See Account Contact Groups for more info on the properties.
+Add a new contact group to an account extension. See Account Contact Groups for details on the properties.
 
 ### Example
 ```java
@@ -27,7 +27,7 @@ See Account Contact Groups for more info on the properties.
 GroupsApi apiInstance = new GroupsApi();
 Integer accountId = 56; // Integer | Account ID
 Integer extensionId = 56; // Integer | Extension ID
-CreateGroupParams data = new CreateGroupParams(); // CreateGroupParams | Group name
+CreateGroupParams data = new CreateGroupParams(); // CreateGroupParams | Group data
 try {
     GroupFull result = apiInstance.createAccountExtensionContactGroup(accountId, extensionId, data);
     System.out.println(result);
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accountId** | **Integer**| Account ID |
  **extensionId** | **Integer**| Extension ID |
- **data** | [**CreateGroupParams**](CreateGroupParams.md)| Group name |
+ **data** | [**CreateGroupParams**](CreateGroupParams.md)| Group data |
 
 ### Return type
 
@@ -60,11 +60,11 @@ Name | Type | Description  | Notes
 
 <a name="deleteAccountExtensionContactGroup"></a>
 # **deleteAccountExtensionContactGroup**
-> DeleteGroup deleteAccountExtensionContactGroup(accountId, extensionId, groupId)
+> DeleteEntry deleteAccountExtensionContactGroup(accountId, extensionId, groupId)
 
-Delete an addressbook group
+Delete a contact group from the address book.
 
-
+Delete a contact group from the address book. See Account Contact Groups for details on the properties.
 
 ### Example
 ```java
@@ -76,7 +76,7 @@ Integer accountId = 56; // Integer | Account ID
 Integer extensionId = 56; // Integer | Extension ID
 Integer groupId = 56; // Integer | Group ID
 try {
-    DeleteGroup result = apiInstance.deleteAccountExtensionContactGroup(accountId, extensionId, groupId);
+    DeleteEntry result = apiInstance.deleteAccountExtensionContactGroup(accountId, extensionId, groupId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling GroupsApi#deleteAccountExtensionContactGroup");
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteGroup**](DeleteGroup.md)
+[**DeleteEntry**](DeleteEntry.md)
 
 ### Authorization
 
@@ -109,9 +109,9 @@ Name | Type | Description  | Notes
 # **getAccountExtensionContactGroup**
 > GroupFull getAccountExtensionContactGroup(accountId, extensionId, groupId)
 
+Retrieve the information of a contact group.
 
-
-See Account Contact Groups for more info on the properties.
+Retrieve the information of a contact group. See Account Contact Groups for details on the properties.
 
 ### Example
 ```java
@@ -156,9 +156,9 @@ Name | Type | Description  | Notes
 # **listAccountExtensionContactGroups**
 > ListGroups listAccountExtensionContactGroups(accountId, extensionId, filtersId, filtersName, sortId, sortName, limit, offset, fields)
 
-Show a list of contact groups belonging to an extension
+Show a list of contact groups belonging to an extension.
 
-See Account Contact Groups for details on the properties.
+Show a list of contact groups belonging to an extension. See Account Contact Groups for details on the properties.
 
 ### Example
 ```java
@@ -215,9 +215,9 @@ Name | Type | Description  | Notes
 # **replaceAccountExtensionContactGroup**
 > GroupFull replaceAccountExtensionContactGroup(accountId, extensionId, groupId, data)
 
+Update the information of a contact group.
 
-
-See Account Contact Groups for more info on the properties.
+Update the information of a contact group. See Account Contact Groups for details on the properties.
 
 ### Example
 ```java
@@ -228,7 +228,7 @@ GroupsApi apiInstance = new GroupsApi();
 Integer accountId = 56; // Integer | Account ID
 Integer extensionId = 56; // Integer | Extension ID
 Integer groupId = 56; // Integer | Group ID
-CreateGroupParams data = new CreateGroupParams(); // CreateGroupParams | Group name
+CreateGroupParams data = new CreateGroupParams(); // CreateGroupParams | Group data
 try {
     GroupFull result = apiInstance.replaceAccountExtensionContactGroup(accountId, extensionId, groupId, data);
     System.out.println(result);
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
  **accountId** | **Integer**| Account ID |
  **extensionId** | **Integer**| Extension ID |
  **groupId** | **Integer**| Group ID |
- **data** | [**CreateGroupParams**](CreateGroupParams.md)| Group name |
+ **data** | [**CreateGroupParams**](CreateGroupParams.md)| Group data |
 
 ### Return type
 

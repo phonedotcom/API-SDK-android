@@ -32,6 +32,8 @@ public class ExtensionFull {
   private String name = null;
   @SerializedName("extension")
   private Integer extension = null;
+  @SerializedName("voip_id")
+  private Integer voipId = null;
   @SerializedName("full_name")
   private String fullName = null;
   @SerializedName("usage_type")
@@ -90,6 +92,17 @@ public class ExtensionFull {
   }
   public void setExtension(Integer extension) {
     this.extension = extension;
+  }
+
+  /**
+   * API Account ID. Optional, object may return the voip_id.
+   **/
+  @ApiModelProperty(value = "API Account ID. Optional, object may return the voip_id.")
+  public Integer getVoipId() {
+    return voipId;
+  }
+  public void setVoipId(Integer voipId) {
+    this.voipId = voipId;
   }
 
   /**
@@ -212,9 +225,8 @@ public class ExtensionFull {
   }
 
   /**
-   * Call Notifications Object. See below for details.
    **/
-  @ApiModelProperty(value = "Call Notifications Object. See below for details.")
+  @ApiModelProperty(value = "")
   public Notification getCallNotifications() {
     return callNotifications;
   }
@@ -246,6 +258,7 @@ public class ExtensionFull {
     return (this.id == null ? extensionFull.id == null : this.id.equals(extensionFull.id)) &&
         (this.name == null ? extensionFull.name == null : this.name.equals(extensionFull.name)) &&
         (this.extension == null ? extensionFull.extension == null : this.extension.equals(extensionFull.extension)) &&
+        (this.voipId == null ? extensionFull.voipId == null : this.voipId.equals(extensionFull.voipId)) &&
         (this.fullName == null ? extensionFull.fullName == null : this.fullName.equals(extensionFull.fullName)) &&
         (this.usageType == null ? extensionFull.usageType == null : this.usageType.equals(extensionFull.usageType)) &&
         (this.deviceMembership == null ? extensionFull.deviceMembership == null : this.deviceMembership.equals(extensionFull.deviceMembership)) &&
@@ -267,6 +280,7 @@ public class ExtensionFull {
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.extension == null ? 0: this.extension.hashCode());
+    result = 31 * result + (this.voipId == null ? 0: this.voipId.hashCode());
     result = 31 * result + (this.fullName == null ? 0: this.fullName.hashCode());
     result = 31 * result + (this.usageType == null ? 0: this.usageType.hashCode());
     result = 31 * result + (this.deviceMembership == null ? 0: this.deviceMembership.hashCode());
@@ -291,6 +305,7 @@ public class ExtensionFull {
     sb.append("  id: ").append(id).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  extension: ").append(extension).append("\n");
+    sb.append("  voipId: ").append(voipId).append("\n");
     sb.append("  fullName: ").append(fullName).append("\n");
     sb.append("  usageType: ").append(usageType).append("\n");
     sb.append("  deviceMembership: ").append(deviceMembership).append("\n");

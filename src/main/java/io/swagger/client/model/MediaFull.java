@@ -16,9 +16,9 @@ import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * The Full Recording Object includes all of the properties from the Recording Summary Object, along with the following:
+ * The Full Recording Object and the Summary Recording Object are the same.
  **/
-@ApiModel(description = "The Full Recording Object includes all of the properties from the Recording Summary Object, along with the following:")
+@ApiModel(description = "The Full Recording Object and the Summary Recording Object are the same.")
 public class MediaFull {
   
   @SerializedName("id")

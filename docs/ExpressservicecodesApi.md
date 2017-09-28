@@ -5,7 +5,7 @@ All URIs are relative to *https://api.phone.com/v4*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getAccountExpressSrvCode**](ExpressservicecodesApi.md#getAccountExpressSrvCode) | **GET** /accounts/{account_id}/express-service-codes/{code_id} | Show details of an account Express Service Code
-[**listAccountExpressSrvCodes**](ExpressservicecodesApi.md#listAccountExpressSrvCodes) | **GET** /accounts/{account_id}/express-service-codes | Get the Express Service Code associated with your account in list format
+[**listAccountExpressSrvCodes**](ExpressservicecodesApi.md#listAccountExpressSrvCodes) | **GET** /accounts/{account_id}/express-service-codes | Get the Express Service Code associated with your account in list format.
 
 
 <a name="getAccountExpressSrvCode"></a>
@@ -57,9 +57,9 @@ Name | Type | Description  | Notes
 # **listAccountExpressSrvCodes**
 > ListExpressServiceCodes listAccountExpressSrvCodes(accountId, filtersId)
 
-Get the Express Service Code associated with your account in list format
+Get the Express Service Code associated with your account in list format.
 
-See Express Service Codes for more detail.
+Get the Express Service Code associated with your account in list format. See Express Service Codes for more detail.
 
 ### Example
 ```java

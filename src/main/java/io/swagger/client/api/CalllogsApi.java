@@ -58,7 +58,7 @@ public class CalllogsApi {
 
   /**
   * Show details of an individual Call Log entry
-  * See Call Logs for more detail.
+  * Show details of an individual Call Log entry. See Call Logs for more detail.
    * @param accountId Account ID
    * @param callId Call ID
    * @return CallLogFull
@@ -77,7 +77,7 @@ public class CalllogsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/call-logs/{call_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "call_id" + "\\}", apiInvoker.escapeString(callId.toString()));
+    String path = "/accounts/{account_id}/call-logs/{call_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "call_id" + "\\}", apiInvoker.escapeString(callId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -113,39 +113,36 @@ public class CalllogsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
    * Show details of an individual Call Log entry
-   * See Call Logs for more detail.
+   * Show details of an individual Call Log entry. See Call Logs for more detail.
    * @param accountId Account ID   * @param callId Call ID
   */
   public void getAccountCallLogs (Integer accountId, String callId, final Response.Listener<CallLogFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountCallLogs",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountCallLogs"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountCallLogs",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountCallLogs"));
     }
-    
     // verify the required parameter 'callId' is set
     if (callId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'callId' when calling getAccountCallLogs",
-         new ApiException(400, "Missing the required parameter 'callId' when calling getAccountCallLogs"));
+      VolleyError error = new VolleyError("Missing the required parameter 'callId' when calling getAccountCallLogs",
+        new ApiException(400, "Missing the required parameter 'callId' when calling getAccountCallLogs"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/call-logs/{call_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "call_id" + "\\}", apiInvoker.escapeString(callId.toString()));
@@ -175,7 +172,7 @@ public class CalllogsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -200,7 +197,7 @@ public class CalllogsApi {
   }
   /**
   * Get a list of call details associated with your account
-  * See Call Logs for more detail.
+  * Get a list of call details associated with your account. See Call Logs for more detail.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersStartTime Call start time filter
@@ -226,7 +223,7 @@ public class CalllogsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/call-logs".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/call-logs".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -275,33 +272,31 @@ public class CalllogsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
    * Get a list of call details associated with your account
-   * See Call Logs for more detail.
+   * Get a list of call details associated with your account. See Call Logs for more detail.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersStartTime Call start time filter   * @param filtersCreatedAt Call log creation time filter   * @param filtersDirection Call direction filter: in or out   * @param filtersCalledNumber Called number   * @param filtersType Call type, such as &#39;call&#39;, &#39;fax&#39;, &#39;audiogram&#39;   * @param filtersExtension Extension filter   * @param sortId ID sorting   * @param sortStartTime Sorting by call start time: asc or desc   * @param sortCreatedAt Sorting by call log creation time: asc or desc   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountCallLogs (Integer accountId, List<String> filtersId, List<String> filtersStartTime, String filtersCreatedAt, String filtersDirection, String filtersCalledNumber, String filtersType, List<String> filtersExtension, String sortId, String sortStartTime, String sortCreatedAt, Integer limit, Integer offset, String fields, final Response.Listener<ListCallLogs> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountCallLogs",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountCallLogs"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountCallLogs",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountCallLogs"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/call-logs".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -344,7 +339,7 @@ public class CalllogsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

@@ -16,7 +16,10 @@ import java.util.*;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
-@ApiModel(description = "")
+/**
+ * The Call Notifications object configures the recipient(s) of notifications when calls are received to this extension.
+ **/
+@ApiModel(description = "The Call Notifications object configures the recipient(s) of notifications when calls are received to this extension.")
 public class Notification {
   
   @SerializedName("emails")

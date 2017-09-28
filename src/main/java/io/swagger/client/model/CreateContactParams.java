@@ -12,6 +12,9 @@
 
 package io.swagger.client.model;
 
+import io.swagger.client.model.AddressListContacts;
+import io.swagger.client.model.Email;
+import io.swagger.client.model.PhoneNumberContact;
 import java.util.*;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -44,11 +47,11 @@ public class CreateContactParams {
   @SerializedName("job_title")
   private String jobTitle = null;
   @SerializedName("emails")
-  private List<Object> emails = null;
+  private List<Email> emails = null;
   @SerializedName("phone_numbers")
-  private List<Object> phoneNumbers = null;
+  private List<PhoneNumberContact> phoneNumbers = null;
   @SerializedName("addresses")
-  private List<Object> addresses = null;
+  private List<AddressListContacts> addresses = null;
   @SerializedName("group")
   private Object group = null;
 
@@ -188,10 +191,10 @@ public class CreateContactParams {
    * Email Addresses
    **/
   @ApiModelProperty(value = "Email Addresses")
-  public List<Object> getEmails() {
+  public List<Email> getEmails() {
     return emails;
   }
-  public void setEmails(List<Object> emails) {
+  public void setEmails(List<Email> emails) {
     this.emails = emails;
   }
 
@@ -199,10 +202,10 @@ public class CreateContactParams {
    * Phone Numbers
    **/
   @ApiModelProperty(value = "Phone Numbers")
-  public List<Object> getPhoneNumbers() {
+  public List<PhoneNumberContact> getPhoneNumbers() {
     return phoneNumbers;
   }
-  public void setPhoneNumbers(List<Object> phoneNumbers) {
+  public void setPhoneNumbers(List<PhoneNumberContact> phoneNumbers) {
     this.phoneNumbers = phoneNumbers;
   }
 
@@ -210,10 +213,10 @@ public class CreateContactParams {
    * Addresses
    **/
   @ApiModelProperty(value = "Addresses")
-  public List<Object> getAddresses() {
+  public List<AddressListContacts> getAddresses() {
     return addresses;
   }
-  public void setAddresses(List<Object> addresses) {
+  public void setAddresses(List<AddressListContacts> addresses) {
     this.addresses = addresses;
   }
 

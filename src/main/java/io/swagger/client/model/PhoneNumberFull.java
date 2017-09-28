@@ -111,9 +111,8 @@ public class PhoneNumberFull {
   }
 
   /**
-   * Caller ID Object, or NULL
    **/
-  @ApiModelProperty(value = "Caller ID Object, or NULL")
+  @ApiModelProperty(value = "")
   public CallerIdPhoneNumber getCallerId() {
     return callerId;
   }
@@ -122,9 +121,8 @@ public class PhoneNumberFull {
   }
 
   /**
-   * SMS Forwarding Object, or NULL
    **/
-  @ApiModelProperty(value = "SMS Forwarding Object, or NULL")
+  @ApiModelProperty(value = "")
   public SmsForwarding getSmsForwarding() {
     return smsForwarding;
   }

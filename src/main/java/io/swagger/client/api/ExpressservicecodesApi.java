@@ -77,7 +77,7 @@ public class ExpressservicecodesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/express-service-codes/{code_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "code_id" + "\\}", apiInvoker.escapeString(codeId.toString()));
+    String path = "/accounts/{account_id}/express-service-codes/{code_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "code_id" + "\\}", apiInvoker.escapeString(codeId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -113,15 +113,15 @@ public class ExpressservicecodesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
@@ -133,19 +133,16 @@ public class ExpressservicecodesApi {
   public void getAccountExpressSrvCode (Integer accountId, Integer codeId, final Response.Listener<ExpressServiceCodeFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExpressSrvCode",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExpressSrvCode"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExpressSrvCode",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExpressSrvCode"));
     }
-    
     // verify the required parameter 'codeId' is set
     if (codeId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'codeId' when calling getAccountExpressSrvCode",
-         new ApiException(400, "Missing the required parameter 'codeId' when calling getAccountExpressSrvCode"));
+      VolleyError error = new VolleyError("Missing the required parameter 'codeId' when calling getAccountExpressSrvCode",
+        new ApiException(400, "Missing the required parameter 'codeId' when calling getAccountExpressSrvCode"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/express-service-codes/{code_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "code_id" + "\\}", apiInvoker.escapeString(codeId.toString()));
@@ -175,7 +172,7 @@ public class ExpressservicecodesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -199,8 +196,8 @@ public class ExpressservicecodesApi {
     }
   }
   /**
-  * Get the Express Service Code associated with your account in list format
-  * See Express Service Codes for more detail.
+  * Get the Express Service Code associated with your account in list format.
+  * Get the Express Service Code associated with your account in list format. See Express Service Codes for more detail.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @return ListExpressServiceCodes
@@ -214,7 +211,7 @@ public class ExpressservicecodesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/express-service-codes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/express-service-codes".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -251,33 +248,31 @@ public class ExpressservicecodesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get the Express Service Code associated with your account in list format
-   * See Express Service Codes for more detail.
+   * Get the Express Service Code associated with your account in list format.
+   * Get the Express Service Code associated with your account in list format. See Express Service Codes for more detail.
    * @param accountId Account ID   * @param filtersId ID filter
   */
   public void listAccountExpressSrvCodes (Integer accountId, List<String> filtersId, final Response.Listener<ListExpressServiceCodes> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExpressSrvCodes",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExpressSrvCodes"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExpressSrvCodes",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExpressSrvCodes"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/express-service-codes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -308,7 +303,7 @@ public class ExpressservicecodesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

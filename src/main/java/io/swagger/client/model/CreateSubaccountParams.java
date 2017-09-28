@@ -12,7 +12,7 @@
 
 package io.swagger.client.model;
 
-import io.swagger.client.model.ContactSubaccount;
+import io.swagger.client.model.ContactResponse;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -24,9 +24,9 @@ public class CreateSubaccountParams {
   @SerializedName("password")
   private String password = null;
   @SerializedName("contact")
-  private ContactSubaccount contact = null;
+  private ContactResponse contact = null;
   @SerializedName("billing_contact")
-  private ContactSubaccount billingContact = null;
+  private ContactResponse billingContact = null;
 
   /**
    * Sub account password
@@ -54,10 +54,10 @@ public class CreateSubaccountParams {
    * Contact Object. See below for details.
    **/
   @ApiModelProperty(value = "Contact Object. See below for details.")
-  public ContactSubaccount getContact() {
+  public ContactResponse getContact() {
     return contact;
   }
-  public void setContact(ContactSubaccount contact) {
+  public void setContact(ContactResponse contact) {
     this.contact = contact;
   }
 
@@ -65,10 +65,10 @@ public class CreateSubaccountParams {
    * Contact Object for billing purposes. See below for details.
    **/
   @ApiModelProperty(value = "Contact Object for billing purposes. See below for details.")
-  public ContactSubaccount getBillingContact() {
+  public ContactResponse getBillingContact() {
     return billingContact;
   }
-  public void setBillingContact(ContactSubaccount billingContact) {
+  public void setBillingContact(ContactResponse billingContact) {
     this.billingContact = billingContact;
   }
 

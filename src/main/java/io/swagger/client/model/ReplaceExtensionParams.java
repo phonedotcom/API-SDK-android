@@ -13,7 +13,7 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.CallNotifications;
-import io.swagger.client.model.Voicemail;
+import io.swagger.client.model.VoicemailInput;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 public class ReplaceExtensionParams {
   
   @SerializedName("voicemail")
-  private Voicemail voicemail = null;
+  private VoicemailInput voicemail = null;
   @SerializedName("call_notifications")
   private CallNotifications callNotifications = null;
   @SerializedName("name_greeting")
@@ -31,39 +31,37 @@ public class ReplaceExtensionParams {
   @SerializedName("timezone")
   private String timezone = null;
   @SerializedName("include_in_directory")
-  private Boolean includeInDirectory = null;
+  private String includeInDirectory = null;
   @SerializedName("extension")
   private Integer extension = null;
   @SerializedName("enable_outbound_calls")
-  private Boolean enableOutboundCalls = null;
+  private String enableOutboundCalls = null;
   @SerializedName("usage_type")
   private String usageType = null;
   @SerializedName("full_name")
   private String fullName = null;
   @SerializedName("enable_call_waiting")
-  private Boolean enableCallWaiting = null;
+  private String enableCallWaiting = null;
   @SerializedName("caller_id")
   private String callerId = null;
   @SerializedName("local_area_code")
-  private Integer localAreaCode = null;
+  private String localAreaCode = null;
   @SerializedName("route")
   private String route = null;
 
   /**
-   * Voicemail object
    **/
-  @ApiModelProperty(value = "Voicemail object")
-  public Voicemail getVoicemail() {
+  @ApiModelProperty(value = "")
+  public VoicemailInput getVoicemail() {
     return voicemail;
   }
-  public void setVoicemail(Voicemail voicemail) {
+  public void setVoicemail(VoicemailInput voicemail) {
     this.voicemail = voicemail;
   }
 
   /**
-   * Call Notifications object
    **/
-  @ApiModelProperty(value = "Call Notifications object")
+  @ApiModelProperty(value = "")
   public CallNotifications getCallNotifications() {
     return callNotifications;
   }
@@ -108,10 +106,10 @@ public class ReplaceExtensionParams {
    * Include in dial-by-name directory
    **/
   @ApiModelProperty(value = "Include in dial-by-name directory")
-  public Boolean getIncludeInDirectory() {
+  public String getIncludeInDirectory() {
     return includeInDirectory;
   }
-  public void setIncludeInDirectory(Boolean includeInDirectory) {
+  public void setIncludeInDirectory(String includeInDirectory) {
     this.includeInDirectory = includeInDirectory;
   }
 
@@ -130,10 +128,10 @@ public class ReplaceExtensionParams {
    * Enable outgoing calls
    **/
   @ApiModelProperty(value = "Enable outgoing calls")
-  public Boolean getEnableOutboundCalls() {
+  public String getEnableOutboundCalls() {
     return enableOutboundCalls;
   }
-  public void setEnableOutboundCalls(Boolean enableOutboundCalls) {
+  public void setEnableOutboundCalls(String enableOutboundCalls) {
     this.enableOutboundCalls = enableOutboundCalls;
   }
 
@@ -163,10 +161,10 @@ public class ReplaceExtensionParams {
    * Enable Call Waiting
    **/
   @ApiModelProperty(value = "Enable Call Waiting")
-  public Boolean getEnableCallWaiting() {
+  public String getEnableCallWaiting() {
     return enableCallWaiting;
   }
-  public void setEnableCallWaiting(Boolean enableCallWaiting) {
+  public void setEnableCallWaiting(String enableCallWaiting) {
     this.enableCallWaiting = enableCallWaiting;
   }
 
@@ -185,10 +183,10 @@ public class ReplaceExtensionParams {
    * Local area code
    **/
   @ApiModelProperty(value = "Local area code")
-  public Integer getLocalAreaCode() {
+  public String getLocalAreaCode() {
     return localAreaCode;
   }
-  public void setLocalAreaCode(Integer localAreaCode) {
+  public void setLocalAreaCode(String localAreaCode) {
     this.localAreaCode = localAreaCode;
   }
 

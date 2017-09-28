@@ -28,9 +28,9 @@ public class CreatePhoneNumberParams {
   @SerializedName("name")
   private String name = null;
   @SerializedName("block_incoming")
-  private Boolean blockIncoming = null;
+  private String blockIncoming = null;
   @SerializedName("block_anonymous")
-  private Boolean blockAnonymous = null;
+  private String blockAnonymous = null;
   @SerializedName("caller_id")
   private CallerIdPhoneNumber callerId = null;
   @SerializedName("sms_forwarding")
@@ -75,10 +75,10 @@ public class CreatePhoneNumberParams {
    * Block incoming calls
    **/
   @ApiModelProperty(value = "Block incoming calls")
-  public Boolean getBlockIncoming() {
+  public String getBlockIncoming() {
     return blockIncoming;
   }
-  public void setBlockIncoming(Boolean blockIncoming) {
+  public void setBlockIncoming(String blockIncoming) {
     this.blockIncoming = blockIncoming;
   }
 
@@ -86,17 +86,16 @@ public class CreatePhoneNumberParams {
    * Block anonymous calls
    **/
   @ApiModelProperty(value = "Block anonymous calls")
-  public Boolean getBlockAnonymous() {
+  public String getBlockAnonymous() {
     return blockAnonymous;
   }
-  public void setBlockAnonymous(Boolean blockAnonymous) {
+  public void setBlockAnonymous(String blockAnonymous) {
     this.blockAnonymous = blockAnonymous;
   }
 
   /**
-   * Caller ID object
    **/
-  @ApiModelProperty(value = "Caller ID object")
+  @ApiModelProperty(value = "")
   public CallerIdPhoneNumber getCallerId() {
     return callerId;
   }
@@ -105,9 +104,8 @@ public class CreatePhoneNumberParams {
   }
 
   /**
-   * SMS Forwarding Object, or NULL
    **/
-  @ApiModelProperty(value = "SMS Forwarding Object, or NULL")
+  @ApiModelProperty(value = "")
   public SmsForwardingParams getSmsForwarding() {
     return smsForwarding;
   }
@@ -116,9 +114,8 @@ public class CreatePhoneNumberParams {
   }
 
   /**
-   * Call Notifications object
    **/
-  @ApiModelProperty(value = "Call Notifications object")
+  @ApiModelProperty(value = "")
   public CallNotifications getCallNotifications() {
     return callNotifications;
   }

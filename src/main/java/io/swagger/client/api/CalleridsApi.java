@@ -56,8 +56,8 @@ public class CalleridsApi {
   }
 
   /**
-  * Show the Caller ID options a given extension can use
-  * Get Caller ID
+  * Show the Caller ID options a given extension can use.
+  * Show the Caller ID options a given extension can use. See Intro to Caller IDs for more on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param filtersNumber Number filter
@@ -83,7 +83,7 @@ public class CalleridsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/caller-ids".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/caller-ids".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -126,39 +126,36 @@ public class CalleridsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show the Caller ID options a given extension can use
-   * Get Caller ID
+   * Show the Caller ID options a given extension can use.
+   * Show the Caller ID options a given extension can use. See Intro to Caller IDs for more on the properties.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param filtersNumber Number filter   * @param filtersName Name filter   * @param sortNumber Number sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void getCallerIds (Integer accountId, Integer extensionId, List<String> filtersNumber, List<String> filtersName, String sortNumber, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListCallerIds> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getCallerIds",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getCallerIds"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getCallerIds",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getCallerIds"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getCallerIds",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling getCallerIds"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getCallerIds",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling getCallerIds"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/caller-ids".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -195,7 +192,7 @@ public class CalleridsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

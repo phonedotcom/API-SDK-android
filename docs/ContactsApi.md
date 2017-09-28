@@ -4,20 +4,20 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountExtensionContact**](ContactsApi.md#createAccountExtensionContact) | **POST** /accounts/{account_id}/extensions/{extension_id}/contacts | Add a new address book contact for an extension
-[**deleteAccountExtensionContact**](ContactsApi.md#deleteAccountExtensionContact) | **DELETE** /accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id} | 
-[**getAccountExtensionContact**](ContactsApi.md#getAccountExtensionContact) | **GET** /accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id} | Retrieve the details of an address book contact
-[**listAccountExtensionContacts**](ContactsApi.md#listAccountExtensionContacts) | **GET** /accounts/{account_id}/extensions/{extension_id}/contacts | Show a list of address book contacts
-[**replaceAccountExtensionContact**](ContactsApi.md#replaceAccountExtensionContact) | **PUT** /accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id} | 
+[**createAccountExtensionContact**](ContactsApi.md#createAccountExtensionContact) | **POST** /accounts/{account_id}/extensions/{extension_id}/contacts | Add a new address book contact for an extension.
+[**deleteAccountExtensionContact**](ContactsApi.md#deleteAccountExtensionContact) | **DELETE** /accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id} | Delete a contact from the address book.
+[**getAccountExtensionContact**](ContactsApi.md#getAccountExtensionContact) | **GET** /accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id} | Retrieve the details of an address book contact.
+[**listAccountExtensionContacts**](ContactsApi.md#listAccountExtensionContacts) | **GET** /accounts/{account_id}/extensions/{extension_id}/contacts | Show the Caller ID options a given extension can use.
+[**replaceAccountExtensionContact**](ContactsApi.md#replaceAccountExtensionContact) | **PUT** /accounts/{account_id}/extensions/{extension_id}/contacts/{contact_id} | Update the info of a contact in the address book.
 
 
 <a name="createAccountExtensionContact"></a>
 # **createAccountExtensionContact**
 > ContactFull createAccountExtensionContact(accountId, extensionId, data)
 
-Add a new address book contact for an extension
+Add a new address book contact for an extension.
 
-For more on the input fields, see Account Contacts.
+Add a new address book contact for an extension. See Account Contacts for more info on the fields in each item.
 
 ### Example
 ```java
@@ -60,11 +60,11 @@ Name | Type | Description  | Notes
 
 <a name="deleteAccountExtensionContact"></a>
 # **deleteAccountExtensionContact**
-> DeleteContact deleteAccountExtensionContact(accountId, extensionId, contactId)
+> DeleteEntry deleteAccountExtensionContact(accountId, extensionId, contactId)
 
+Delete a contact from the address book.
 
-
-
+Delete a contact from the address book. See Account Contacts for more info on the fields in each item.
 
 ### Example
 ```java
@@ -76,7 +76,7 @@ Integer accountId = 56; // Integer | Account ID
 Integer extensionId = 56; // Integer | Extension ID
 Integer contactId = 56; // Integer | Contact ID
 try {
-    DeleteContact result = apiInstance.deleteAccountExtensionContact(accountId, extensionId, contactId);
+    DeleteEntry result = apiInstance.deleteAccountExtensionContact(accountId, extensionId, contactId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ContactsApi#deleteAccountExtensionContact");
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteContact**](DeleteContact.md)
+[**DeleteEntry**](DeleteEntry.md)
 
 ### Authorization
 
@@ -109,9 +109,9 @@ Name | Type | Description  | Notes
 # **getAccountExtensionContact**
 > ContactFull getAccountExtensionContact(accountId, extensionId, contactId)
 
-Retrieve the details of an address book contact
+Retrieve the details of an address book contact.
 
-For more info on the fields shown, see Account Contacts.
+Retrieve the details of an address book contact. See Account Contacts for more info on the fields in each item.
 
 ### Example
 ```java
@@ -156,9 +156,9 @@ Name | Type | Description  | Notes
 # **listAccountExtensionContacts**
 > ListContacts listAccountExtensionContacts(accountId, extensionId, filtersId, filtersGroupId, filtersUpdatedAt, sortId, sortUpdatedAt, limit, offset, fields)
 
-Show a list of address book contacts
+Show the Caller ID options a given extension can use.
 
-See Account Contacts for more info on the fields in each item.
+Show the Caller ID options a given extension can use. See Intro to Caller IDs for more on the properties.
 
 ### Example
 ```java
@@ -217,9 +217,9 @@ Name | Type | Description  | Notes
 # **replaceAccountExtensionContact**
 > ContactFull replaceAccountExtensionContact(accountId, extensionId, contactId, data)
 
+Update the info of a contact in the address book.
 
-
-For more on the input fields, see Account Contacts.
+Update the info of a contact in the address book. See Account Contacts for more info on the fields in each item.
 
 ### Example
 ```java

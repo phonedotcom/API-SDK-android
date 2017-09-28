@@ -50,8 +50,16 @@ public class CallLogFull {
   private String callNumber = null;
   @SerializedName("final_action")
   private String finalAction = null;
-  @SerializedName("call_recording")
-  private String callRecording = null;
+  @SerializedName("voicemail_url")
+  private String voicemailUrl = null;
+  @SerializedName("voicemail_cp_url")
+  private String voicemailCpUrl = null;
+  @SerializedName("voicemail_transcript")
+  private String voicemailTranscript = null;
+  @SerializedName("call_recording_url")
+  private String callRecordingUrl = null;
+  @SerializedName("call_recording_cp_url")
+  private String callRecordingCpUrl = null;
   @SerializedName("details")
   private List<CallDetails> details = null;
   @SerializedName("caller_cnam")
@@ -201,14 +209,58 @@ public class CallLogFull {
   }
 
   /**
-   * URL of call recording if available. Empty string if call recording does not exist
+   * URL of voicemail if available. User may download the audio via this URL. Empty string if voicemail does not exist
    **/
-  @ApiModelProperty(value = "URL of call recording if available. Empty string if call recording does not exist")
-  public String getCallRecording() {
-    return callRecording;
+  @ApiModelProperty(value = "URL of voicemail if available. User may download the audio via this URL. Empty string if voicemail does not exist")
+  public String getVoicemailUrl() {
+    return voicemailUrl;
   }
-  public void setCallRecording(String callRecording) {
-    this.callRecording = callRecording;
+  public void setVoicemailUrl(String voicemailUrl) {
+    this.voicemailUrl = voicemailUrl;
+  }
+
+  /**
+   * URL of voicemail if available. User may listen to the audio online via this URL. Empty string if voicemail does not exist
+   **/
+  @ApiModelProperty(value = "URL of voicemail if available. User may listen to the audio online via this URL. Empty string if voicemail does not exist")
+  public String getVoicemailCpUrl() {
+    return voicemailCpUrl;
+  }
+  public void setVoicemailCpUrl(String voicemailCpUrl) {
+    this.voicemailCpUrl = voicemailCpUrl;
+  }
+
+  /**
+   * Transcript of voicemail if enabled and available
+   **/
+  @ApiModelProperty(value = "Transcript of voicemail if enabled and available")
+  public String getVoicemailTranscript() {
+    return voicemailTranscript;
+  }
+  public void setVoicemailTranscript(String voicemailTranscript) {
+    this.voicemailTranscript = voicemailTranscript;
+  }
+
+  /**
+   * URL of call recording if available. User may download the audio via this URL. Empty string if call recording does not exist
+   **/
+  @ApiModelProperty(value = "URL of call recording if available. User may download the audio via this URL. Empty string if call recording does not exist")
+  public String getCallRecordingUrl() {
+    return callRecordingUrl;
+  }
+  public void setCallRecordingUrl(String callRecordingUrl) {
+    this.callRecordingUrl = callRecordingUrl;
+  }
+
+  /**
+   * URL of call recording if available. User may listen to the audio online via this URL. Empty string if call recording does not exist
+   **/
+  @ApiModelProperty(value = "URL of call recording if available. User may listen to the audio online via this URL. Empty string if call recording does not exist")
+  public String getCallRecordingCpUrl() {
+    return callRecordingCpUrl;
+  }
+  public void setCallRecordingCpUrl(String callRecordingCpUrl) {
+    this.callRecordingCpUrl = callRecordingCpUrl;
   }
 
   /**
@@ -256,7 +308,11 @@ public class CallLogFull {
         (this.isMonitored == null ? callLogFull.isMonitored == null : this.isMonitored.equals(callLogFull.isMonitored)) &&
         (this.callNumber == null ? callLogFull.callNumber == null : this.callNumber.equals(callLogFull.callNumber)) &&
         (this.finalAction == null ? callLogFull.finalAction == null : this.finalAction.equals(callLogFull.finalAction)) &&
-        (this.callRecording == null ? callLogFull.callRecording == null : this.callRecording.equals(callLogFull.callRecording)) &&
+        (this.voicemailUrl == null ? callLogFull.voicemailUrl == null : this.voicemailUrl.equals(callLogFull.voicemailUrl)) &&
+        (this.voicemailCpUrl == null ? callLogFull.voicemailCpUrl == null : this.voicemailCpUrl.equals(callLogFull.voicemailCpUrl)) &&
+        (this.voicemailTranscript == null ? callLogFull.voicemailTranscript == null : this.voicemailTranscript.equals(callLogFull.voicemailTranscript)) &&
+        (this.callRecordingUrl == null ? callLogFull.callRecordingUrl == null : this.callRecordingUrl.equals(callLogFull.callRecordingUrl)) &&
+        (this.callRecordingCpUrl == null ? callLogFull.callRecordingCpUrl == null : this.callRecordingCpUrl.equals(callLogFull.callRecordingCpUrl)) &&
         (this.details == null ? callLogFull.details == null : this.details.equals(callLogFull.details)) &&
         (this.callerCnam == null ? callLogFull.callerCnam == null : this.callerCnam.equals(callLogFull.callerCnam));
   }
@@ -277,7 +333,11 @@ public class CallLogFull {
     result = 31 * result + (this.isMonitored == null ? 0: this.isMonitored.hashCode());
     result = 31 * result + (this.callNumber == null ? 0: this.callNumber.hashCode());
     result = 31 * result + (this.finalAction == null ? 0: this.finalAction.hashCode());
-    result = 31 * result + (this.callRecording == null ? 0: this.callRecording.hashCode());
+    result = 31 * result + (this.voicemailUrl == null ? 0: this.voicemailUrl.hashCode());
+    result = 31 * result + (this.voicemailCpUrl == null ? 0: this.voicemailCpUrl.hashCode());
+    result = 31 * result + (this.voicemailTranscript == null ? 0: this.voicemailTranscript.hashCode());
+    result = 31 * result + (this.callRecordingUrl == null ? 0: this.callRecordingUrl.hashCode());
+    result = 31 * result + (this.callRecordingCpUrl == null ? 0: this.callRecordingCpUrl.hashCode());
     result = 31 * result + (this.details == null ? 0: this.details.hashCode());
     result = 31 * result + (this.callerCnam == null ? 0: this.callerCnam.hashCode());
     return result;
@@ -301,7 +361,11 @@ public class CallLogFull {
     sb.append("  isMonitored: ").append(isMonitored).append("\n");
     sb.append("  callNumber: ").append(callNumber).append("\n");
     sb.append("  finalAction: ").append(finalAction).append("\n");
-    sb.append("  callRecording: ").append(callRecording).append("\n");
+    sb.append("  voicemailUrl: ").append(voicemailUrl).append("\n");
+    sb.append("  voicemailCpUrl: ").append(voicemailCpUrl).append("\n");
+    sb.append("  voicemailTranscript: ").append(voicemailTranscript).append("\n");
+    sb.append("  callRecordingUrl: ").append(callRecordingUrl).append("\n");
+    sb.append("  callRecordingCpUrl: ").append(callRecordingCpUrl).append("\n");
     sb.append("  details: ").append(details).append("\n");
     sb.append("  callerCnam: ").append(callerCnam).append("\n");
     sb.append("}\n");

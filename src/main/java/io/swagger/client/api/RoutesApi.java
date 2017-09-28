@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateRouteParams;
-import io.swagger.client.model.DeleteRoute;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.ListRoutes;
 import io.swagger.client.model.RouteFull;
 
@@ -59,8 +59,8 @@ public class RoutesApi {
   }
 
   /**
-  * Add a new address book contact for an extension
-  * For more on the input fields, see Intro to Routes.
+  * Add a new route to the account.
+  * Add a new route to the account. See Intro to Routes for more info on the properties.
    * @param accountId Account ID
    * @param data Route data
    * @return RouteFull
@@ -74,7 +74,7 @@ public class RoutesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/routes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/routes".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -110,33 +110,31 @@ public class RoutesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Add a new address book contact for an extension
-   * For more on the input fields, see Intro to Routes.
+   * Add a new route to the account.
+   * Add a new route to the account. See Intro to Routes for more info on the properties.
    * @param accountId Account ID   * @param data Route data
   */
   public void createRoute (Integer accountId, CreateRouteParams data, final Response.Listener<RouteFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createRoute",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createRoute",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createRoute"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/routes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -166,7 +164,7 @@ public class RoutesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -190,13 +188,13 @@ public class RoutesApi {
     }
   }
   /**
-  * 
-  * 
+  * Delete a route from the account.
+  * Delete a route from the account. See Intro to Routes for more info on the properties.
    * @param accountId Account ID
    * @param routeId Route ID
-   * @return DeleteRoute
+   * @return DeleteEntry
   */
-  public DeleteRoute deleteAccountRoute (Integer accountId, Integer routeId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DeleteEntry deleteAccountRoute (Integer accountId, Integer routeId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -210,7 +208,7 @@ public class RoutesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
+    String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -237,7 +235,7 @@ public class RoutesApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (DeleteRoute) ApiInvoker.deserialize(localVarResponse, "", DeleteRoute.class);
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
       } else {
          return null;
       }
@@ -246,39 +244,36 @@ public class RoutesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * 
+   * Delete a route from the account.
+   * Delete a route from the account. See Intro to Routes for more info on the properties.
    * @param accountId Account ID   * @param routeId Route ID
   */
-  public void deleteAccountRoute (Integer accountId, Integer routeId, final Response.Listener<DeleteRoute> responseListener, final Response.ErrorListener errorListener) {
+  public void deleteAccountRoute (Integer accountId, Integer routeId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountRoute",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountRoute",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountRoute"));
     }
-    
     // verify the required parameter 'routeId' is set
     if (routeId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'routeId' when calling deleteAccountRoute",
-         new ApiException(400, "Missing the required parameter 'routeId' when calling deleteAccountRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'routeId' when calling deleteAccountRoute",
+        new ApiException(400, "Missing the required parameter 'routeId' when calling deleteAccountRoute"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
@@ -308,7 +303,7 @@ public class RoutesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -316,7 +311,7 @@ public class RoutesApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((DeleteRoute) ApiInvoker.deserialize(localVarResponse,  "", DeleteRoute.class));
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -332,8 +327,8 @@ public class RoutesApi {
     }
   }
   /**
-  * Show details of an individual route
-  * This service shows the details of an individual route.
+  * Show details of an individual route.
+  * Show details of an individual route. See Intro to Routes for more info on the properties.
    * @param accountId Account ID
    * @param routeId Route ID
    * @return RouteFull
@@ -352,7 +347,7 @@ public class RoutesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
+    String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -388,39 +383,36 @@ public class RoutesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual route
-   * This service shows the details of an individual route.
+   * Show details of an individual route.
+   * Show details of an individual route. See Intro to Routes for more info on the properties.
    * @param accountId Account ID   * @param routeId Route ID
   */
   public void getAccountRoute (Integer accountId, Integer routeId, final Response.Listener<RouteFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountRoute",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountRoute",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountRoute"));
     }
-    
     // verify the required parameter 'routeId' is set
     if (routeId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'routeId' when calling getAccountRoute",
-         new ApiException(400, "Missing the required parameter 'routeId' when calling getAccountRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'routeId' when calling getAccountRoute",
+        new ApiException(400, "Missing the required parameter 'routeId' when calling getAccountRoute"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
@@ -450,7 +442,7 @@ public class RoutesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -474,8 +466,8 @@ public class RoutesApi {
     }
   }
   /**
-  * Get a list of routes for an account
-  * See Intro to Routes for more info on the properties.
+  * Get a list of routes for an account.
+  * Get a list of routes for an account. See Intro to Routes for more info on the properties.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -495,7 +487,7 @@ public class RoutesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/routes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/routes".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -538,33 +530,31 @@ public class RoutesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of routes for an account
-   * See Intro to Routes for more info on the properties.
+   * Get a list of routes for an account.
+   * Get a list of routes for an account. See Intro to Routes for more info on the properties.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountRoutes (Integer accountId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListRoutes> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountRoutes",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountRoutes"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountRoutes",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountRoutes"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/routes".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -601,7 +591,7 @@ public class RoutesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -625,8 +615,8 @@ public class RoutesApi {
     }
   }
   /**
-  * 
-  * For more on the input fields, see Intro to Routes.
+  * Update the information of a route.
+  * Update the information of a route. See Intro to Routes for more info on the properties.
    * @param accountId Account ID
    * @param routeId Route ID
    * @param data Route data
@@ -646,7 +636,7 @@ public class RoutesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
+    String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -682,39 +672,36 @@ public class RoutesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * For more on the input fields, see Intro to Routes.
+   * Update the information of a route.
+   * Update the information of a route. See Intro to Routes for more info on the properties.
    * @param accountId Account ID   * @param routeId Route ID   * @param data Route data
   */
   public void replaceAccountRoute (Integer accountId, Integer routeId, CreateRouteParams data, final Response.Listener<RouteFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountRoute",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountRoute",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountRoute"));
     }
-    
     // verify the required parameter 'routeId' is set
     if (routeId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'routeId' when calling replaceAccountRoute",
-         new ApiException(400, "Missing the required parameter 'routeId' when calling replaceAccountRoute"));
+      VolleyError error = new VolleyError("Missing the required parameter 'routeId' when calling replaceAccountRoute",
+        new ApiException(400, "Missing the required parameter 'routeId' when calling replaceAccountRoute"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/routes/{route_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "route_id" + "\\}", apiInvoker.escapeString(routeId.toString()));
@@ -744,7 +731,7 @@ public class RoutesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

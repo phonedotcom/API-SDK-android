@@ -64,7 +64,7 @@ public class DefaultApi {
     Object postBody = null;
 
     // create path and map variables
-    String path = "/ping".replaceAll("\\{format\\}","json");
+    String path = "/ping";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -100,15 +100,15 @@ public class DefaultApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
@@ -120,7 +120,6 @@ public class DefaultApi {
   public void ping (final Response.Listener<PingResponse> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
 
     // create path and map variables
     String path = "/ping".replaceAll("\\{format\\}","json");
@@ -150,7 +149,7 @@ public class DefaultApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

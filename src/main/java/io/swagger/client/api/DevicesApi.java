@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateDeviceParams;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.DeviceFull;
 import io.swagger.client.model.ListDevices;
 
@@ -58,8 +59,8 @@ public class DevicesApi {
   }
 
   /**
-  * Register a generic VoIP device
-  * 
+  * Register a generic VoIP device.
+  * Register a generic VoIP device. See Devices for more detail.
    * @param accountId Account ID
    * @param data Device data
    * @return DeviceFull
@@ -73,7 +74,7 @@ public class DevicesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/devices".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/devices".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -109,33 +110,31 @@ public class DevicesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Register a generic VoIP device
-   * 
+   * Register a generic VoIP device.
+   * Register a generic VoIP device. See Devices for more detail.
    * @param accountId Account ID   * @param data Device data
   */
   public void createAccountDevice (Integer accountId, CreateDeviceParams data, final Response.Listener<DeviceFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountDevice",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountDevice"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountDevice",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountDevice"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/devices".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -165,7 +164,7 @@ public class DevicesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -189,8 +188,147 @@ public class DevicesApi {
     }
   }
   /**
-  * Show details of an individual VoIP device
-  * 
+  * Delete a VoIP device.
+  * Delete a VoIP device. See Devices for more detail.
+   * @param accountId Account ID
+   * @param deviceId Device ID
+   * @return DeleteEntry
+  */
+  public DeleteEntry deleteAccountDevice (Integer accountId, Integer deviceId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountDevice",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountDevice"));
+    }
+    // verify the required parameter 'deviceId' is set
+    if (deviceId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'deviceId' when calling deleteAccountDevice",
+        new ApiException(400, "Missing the required parameter 'deviceId' when calling deleteAccountDevice"));
+    }
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    String[] contentTypes = {
+      "application/json"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "apiKey" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Delete a VoIP device.
+   * Delete a VoIP device. See Devices for more detail.
+   * @param accountId Account ID   * @param deviceId Device ID
+  */
+  public void deleteAccountDevice (Integer accountId, Integer deviceId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountDevice",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountDevice"));
+    }
+    // verify the required parameter 'deviceId' is set
+    if (deviceId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'deviceId' when calling deleteAccountDevice",
+        new ApiException(400, "Missing the required parameter 'deviceId' when calling deleteAccountDevice"));
+    }
+
+    // create path and map variables
+    String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+
+
+    String[] contentTypes = {
+      "application/json"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "apiKey" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Show details of an individual VoIP device.
+  * Show details of an individual VoIP device. See Devices for more detail.
    * @param accountId Account ID
    * @param deviceId Device ID
    * @return DeviceFull
@@ -209,7 +347,7 @@ public class DevicesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
+    String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -245,39 +383,36 @@ public class DevicesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual VoIP device
-   * 
+   * Show details of an individual VoIP device.
+   * Show details of an individual VoIP device. See Devices for more detail.
    * @param accountId Account ID   * @param deviceId Device ID
   */
   public void getAccountDevice (Integer accountId, Integer deviceId, final Response.Listener<DeviceFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountDevice",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountDevice"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountDevice",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountDevice"));
     }
-    
     // verify the required parameter 'deviceId' is set
     if (deviceId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'deviceId' when calling getAccountDevice",
-         new ApiException(400, "Missing the required parameter 'deviceId' when calling getAccountDevice"));
+      VolleyError error = new VolleyError("Missing the required parameter 'deviceId' when calling getAccountDevice",
+        new ApiException(400, "Missing the required parameter 'deviceId' when calling getAccountDevice"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
@@ -307,7 +442,7 @@ public class DevicesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -331,8 +466,8 @@ public class DevicesApi {
     }
   }
   /**
-  * Get a list of VoIP devices associated with your account
-  * 
+  * Get a list of VoIP devices associated with your account.
+  * Get a list of VoIP devices associated with your account. See Devices for more detail.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -352,7 +487,7 @@ public class DevicesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/devices".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/devices".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -395,33 +530,31 @@ public class DevicesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of VoIP devices associated with your account
-   * 
+   * Get a list of VoIP devices associated with your account.
+   * Get a list of VoIP devices associated with your account. See Devices for more detail.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountDevices (Integer accountId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListDevices> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountDevices",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountDevices"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountDevices",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountDevices"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/devices".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -458,7 +591,7 @@ public class DevicesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -482,8 +615,8 @@ public class DevicesApi {
     }
   }
   /**
-  * Update the settings for an individual VoIP device
-  * 
+  * Update the details of an individual VoIP device.
+  * Update the details of an individual VoIP device. See Devices for more detail.
    * @param accountId Account ID
    * @param deviceId Device ID
    * @param data Device data
@@ -503,7 +636,7 @@ public class DevicesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
+    String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -539,39 +672,36 @@ public class DevicesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Update the settings for an individual VoIP device
-   * 
+   * Update the details of an individual VoIP device.
+   * Update the details of an individual VoIP device. See Devices for more detail.
    * @param accountId Account ID   * @param deviceId Device ID   * @param data Device data
   */
   public void replaceAccountDevice (Integer accountId, Integer deviceId, CreateDeviceParams data, final Response.Listener<DeviceFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountDevice",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountDevice"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountDevice",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountDevice"));
     }
-    
     // verify the required parameter 'deviceId' is set
     if (deviceId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'deviceId' when calling replaceAccountDevice",
-         new ApiException(400, "Missing the required parameter 'deviceId' when calling replaceAccountDevice"));
+      VolleyError error = new VolleyError("Missing the required parameter 'deviceId' when calling replaceAccountDevice",
+        new ApiException(400, "Missing the required parameter 'deviceId' when calling replaceAccountDevice"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/devices/{device_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "device_id" + "\\}", apiInvoker.escapeString(deviceId.toString()));
@@ -601,7 +731,7 @@ public class DevicesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

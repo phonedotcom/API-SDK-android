@@ -58,7 +58,7 @@ public class AccountsApi {
 
   /**
   * Retrieve details of an individual account
-  * This service shows the details of an individual account. See Accounts for more info on the properties.
+  * Retrieve details of an individual account. See Accounts for more info on the properties.
    * @param accountId Account ID
    * @return AccountFull
   */
@@ -71,7 +71,7 @@ public class AccountsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -107,33 +107,31 @@ public class AccountsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
    * Retrieve details of an individual account
-   * This service shows the details of an individual account. See Accounts for more info on the properties.
+   * Retrieve details of an individual account. See Accounts for more info on the properties.
    * @param accountId Account ID
   */
   public void getAccount (Integer accountId, final Response.Listener<AccountFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccount",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccount"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccount",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccount"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -163,7 +161,7 @@ public class AccountsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -187,8 +185,8 @@ public class AccountsApi {
     }
   }
   /**
-  * Get a list of accounts visible to the authenticated user or client
-  * This service lists the accounts accessible to the authenticated client. In most cases, there will only be one such account. See Accounts for more info on the properties.
+  * Get a list of accounts visible to the authenticated user or client.
+  * Get a list of accounts visible to the authenticated user or client. In most cases, there will only be one such account. See Accounts for more info on the properties.
    * @param filtersId ID filter
    * @param sortId ID sorting
    * @param limit Max results
@@ -200,7 +198,7 @@ public class AccountsApi {
     Object postBody = null;
 
     // create path and map variables
-    String path = "/accounts".replaceAll("\\{format\\}","json");
+    String path = "/accounts";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -241,27 +239,26 @@ public class AccountsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of accounts visible to the authenticated user or client
-   * This service lists the accounts accessible to the authenticated client. In most cases, there will only be one such account. See Accounts for more info on the properties.
+   * Get a list of accounts visible to the authenticated user or client.
+   * Get a list of accounts visible to the authenticated user or client. In most cases, there will only be one such account. See Accounts for more info on the properties.
    * @param filtersId ID filter   * @param sortId ID sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccounts (List<String> filtersId, String sortId, Integer limit, Integer offset, String fields, final Response.Listener<ListAccounts> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
 
     // create path and map variables
     String path = "/accounts".replaceAll("\\{format\\}","json");
@@ -296,7 +293,7 @@ public class AccountsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

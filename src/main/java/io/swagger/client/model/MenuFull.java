@@ -76,9 +76,9 @@ public class MenuFull {
   }
 
   /**
-   * Boolean. Determines whether a caller can enter an extension number to bypass the menu.
+   * Number of seconds to wait for the caller to choose a menu option. Must be between 1 and 5 seconds.
    **/
-  @ApiModelProperty(value = "Boolean. Determines whether a caller can enter an extension number to bypass the menu.")
+  @ApiModelProperty(value = "Number of seconds to wait for the caller to choose a menu option. Must be between 1 and 5 seconds.")
   public Integer getKeypressWaitTime() {
     return keypressWaitTime;
   }

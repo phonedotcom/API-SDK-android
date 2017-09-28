@@ -4,20 +4,20 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountTrunk**](TrunksApi.md#createAccountTrunk) | **POST** /accounts/{account_id}/trunks | Add a trunk record with SIP information
-[**deleteAccountTrunk**](TrunksApi.md#deleteAccountTrunk) | **DELETE** /accounts/{account_id}/trunks/{trunk_id} | Delete a trunk from account
-[**getAccountTrunk**](TrunksApi.md#getAccountTrunk) | **GET** /accounts/{account_id}/trunks/{trunk_id} | Show details of an individual trunk
-[**listAccountTrunks**](TrunksApi.md#listAccountTrunks) | **GET** /accounts/{account_id}/trunks | Get a list of trunks for an account
-[**replaceAccountTrunk**](TrunksApi.md#replaceAccountTrunk) | **PUT** /accounts/{account_id}/trunks/{trunk_id} | Replace parameters in a trunk
+[**createAccountTrunk**](TrunksApi.md#createAccountTrunk) | **POST** /accounts/{account_id}/trunks | Add a trunk record with SIP information.
+[**deleteAccountTrunk**](TrunksApi.md#deleteAccountTrunk) | **DELETE** /accounts/{account_id}/trunks/{trunk_id} | Delete a trunk from account.
+[**getAccountTrunk**](TrunksApi.md#getAccountTrunk) | **GET** /accounts/{account_id}/trunks/{trunk_id} | Show details of an individual trunk.
+[**listAccountTrunks**](TrunksApi.md#listAccountTrunks) | **GET** /accounts/{account_id}/trunks | Get a list of trunks for an account.
+[**replaceAccountTrunk**](TrunksApi.md#replaceAccountTrunk) | **PUT** /accounts/{account_id}/trunks/{trunk_id} | Replace parameters in a trunk.
 
 
 <a name="createAccountTrunk"></a>
 # **createAccountTrunk**
 > TrunkFull createAccountTrunk(accountId, data)
 
-Add a trunk record with SIP information
+Add a trunk record with SIP information.
 
-For more on the input fields, see Account Trunks.
+Add a trunk record with SIP information. See Account Trunks for more info on the properties.
 
 ### Example
 ```java
@@ -58,11 +58,11 @@ Name | Type | Description  | Notes
 
 <a name="deleteAccountTrunk"></a>
 # **deleteAccountTrunk**
-> DeleteTrunk deleteAccountTrunk(accountId, trunkId)
+> DeleteEntry deleteAccountTrunk(accountId, trunkId)
 
-Delete a trunk from account
+Delete a trunk from account.
 
-This service deletes a trunk from the account. For more on the properties of trunks, see Account Trunks.
+Delete a trunk from account. See Account Trunks for more info on the properties.
 
 ### Example
 ```java
@@ -73,7 +73,7 @@ TrunksApi apiInstance = new TrunksApi();
 Integer accountId = 56; // Integer | Account ID
 Integer trunkId = 56; // Integer | Trunk ID
 try {
-    DeleteTrunk result = apiInstance.deleteAccountTrunk(accountId, trunkId);
+    DeleteEntry result = apiInstance.deleteAccountTrunk(accountId, trunkId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling TrunksApi#deleteAccountTrunk");
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteTrunk**](DeleteTrunk.md)
+[**DeleteEntry**](DeleteEntry.md)
 
 ### Authorization
 
@@ -105,9 +105,9 @@ Name | Type | Description  | Notes
 # **getAccountTrunk**
 > TrunkFull getAccountTrunk(accountId, trunkId)
 
-Show details of an individual trunk
+Show details of an individual trunk.
 
-This service shows the details of an individual Trunk.
+Show details of an individual trunk. See Account Trunks for more info on the properties.
 
 ### Example
 ```java
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 # **listAccountTrunks**
 > ListTrunks listAccountTrunks(accountId, filtersId, filtersName, sortId, sortName, limit, offset, fields)
 
-Get a list of trunks for an account
+Get a list of trunks for an account.
 
-See Account Trunks for more info on the properties.
+Get a list of trunks for an account. See Account Trunks for more info on the properties.
 
 ### Example
 ```java
@@ -207,9 +207,9 @@ Name | Type | Description  | Notes
 # **replaceAccountTrunk**
 > TrunkFull replaceAccountTrunk(accountId, trunkId, data)
 
-Replace parameters in a trunk
+Replace parameters in a trunk.
 
-For more on the input fields, see Account Trunks.
+Replace parameters in a trunk. See Account Trunks for more info on the properties.
 
 ### Example
 ```java

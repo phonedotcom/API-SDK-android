@@ -80,7 +80,7 @@ public class AvailablenumbersApi {
     Object postBody = null;
 
     // create path and map variables
-    String path = "/phone-numbers/available".replaceAll("\\{format\\}","json");
+    String path = "/phone-numbers/available";
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -132,15 +132,15 @@ public class AvailablenumbersApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
@@ -152,7 +152,6 @@ public class AvailablenumbersApi {
   public void listAvailablePhoneNumbers (List<String> filtersPhoneNumber, List<String> filtersCountryCode, List<String> filtersNpa, List<String> filtersNxx, List<String> filtersXxxx, List<String> filtersCity, List<String> filtersProvince, List<String> filtersCountry, List<String> filtersPrice, List<String> filtersCategory, String sortInternal, String sortPrice, String sortPhoneNumber, Integer limit, Integer offset, String fields, final Response.Listener<ListAvailableNumbers> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
 
     // create path and map variables
     String path = "/phone-numbers/available".replaceAll("\\{format\\}","json");
@@ -198,7 +197,7 @@ public class AvailablenumbersApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,

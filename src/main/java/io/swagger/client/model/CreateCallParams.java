@@ -25,7 +25,7 @@ public class CreateCallParams {
   @SerializedName("caller_caller_id")
   private String callerCallerId = null;
   @SerializedName("caller_private")
-  private Boolean callerPrivate = null;
+  private String callerPrivate = null;
   @SerializedName("callee_phone_number")
   private String calleePhoneNumber = null;
   @SerializedName("callee_extension")
@@ -33,7 +33,7 @@ public class CreateCallParams {
   @SerializedName("callee_caller_id")
   private String calleeCallerId = null;
   @SerializedName("callee_private")
-  private Boolean calleePrivate = null;
+  private String calleePrivate = null;
 
   /**
    * Caller phone number in E.164 format
@@ -72,10 +72,10 @@ public class CreateCallParams {
    * Flag to set caller ID to private
    **/
   @ApiModelProperty(value = "Flag to set caller ID to private")
-  public Boolean getCallerPrivate() {
+  public String getCallerPrivate() {
     return callerPrivate;
   }
-  public void setCallerPrivate(Boolean callerPrivate) {
+  public void setCallerPrivate(String callerPrivate) {
     this.callerPrivate = callerPrivate;
   }
 
@@ -116,10 +116,10 @@ public class CreateCallParams {
    * Flag to set callee ID to private
    **/
   @ApiModelProperty(value = "Flag to set callee ID to private")
-  public Boolean getCalleePrivate() {
+  public String getCalleePrivate() {
     return calleePrivate;
   }
-  public void setCalleePrivate(Boolean calleePrivate) {
+  public void setCalleePrivate(String calleePrivate) {
     this.calleePrivate = calleePrivate;
   }
 

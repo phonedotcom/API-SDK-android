@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **company** | **String** | Company Name |  [optional]
 **department** | **String** | Department Name |  [optional]
 **jobTitle** | **String** | Job Title |  [optional]
-**emails** | **List&lt;Object&gt;** | Email Addresses |  [optional]
-**phoneNumbers** | **List&lt;Object&gt;** | Phone Numbers |  [optional]
-**addresses** | **List&lt;Object&gt;** | Addresses |  [optional]
+**emails** | [**List&lt;Email&gt;**](Email.md) | Email Addresses |  [optional]
+**phoneNumbers** | [**List&lt;PhoneNumberContact&gt;**](PhoneNumberContact.md) | Phone Numbers |  [optional]
+**addresses** | [**List&lt;AddressListContacts&gt;**](AddressListContacts.md) | Addresses |  [optional]
 **group** | **Object** | Contact Group |  [optional]
 
 

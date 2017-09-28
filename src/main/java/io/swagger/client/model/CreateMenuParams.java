@@ -21,12 +21,12 @@ public class CreateMenuParams {
   
   @SerializedName("name")
   private String name = null;
-  @SerializedName("main_message")
-  private Object mainMessage = null;
-  @SerializedName("invalid_keypress_message")
-  private Object invalidKeypressMessage = null;
+  @SerializedName("greeting")
+  private Object greeting = null;
+  @SerializedName("keypress_error")
+  private Object keypressError = null;
   @SerializedName("allow_extension_dial")
-  private Boolean allowExtensionDial = null;
+  private String allowExtensionDial = null;
   @SerializedName("keypress_wait_time")
   private Integer keypressWaitTime = null;
   @SerializedName("timeout_handler")
@@ -47,30 +47,30 @@ public class CreateMenuParams {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Object getMainMessage() {
-    return mainMessage;
+  public Object getGreeting() {
+    return greeting;
   }
-  public void setMainMessage(Object mainMessage) {
-    this.mainMessage = mainMessage;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Object getInvalidKeypressMessage() {
-    return invalidKeypressMessage;
-  }
-  public void setInvalidKeypressMessage(Object invalidKeypressMessage) {
-    this.invalidKeypressMessage = invalidKeypressMessage;
+  public void setGreeting(Object greeting) {
+    this.greeting = greeting;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public Boolean getAllowExtensionDial() {
+  public Object getKeypressError() {
+    return keypressError;
+  }
+  public void setKeypressError(Object keypressError) {
+    this.keypressError = keypressError;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getAllowExtensionDial() {
     return allowExtensionDial;
   }
-  public void setAllowExtensionDial(Boolean allowExtensionDial) {
+  public void setAllowExtensionDial(String allowExtensionDial) {
     this.allowExtensionDial = allowExtensionDial;
   }
 
@@ -115,8 +115,8 @@ public class CreateMenuParams {
     }
     CreateMenuParams createMenuParams = (CreateMenuParams) o;
     return (this.name == null ? createMenuParams.name == null : this.name.equals(createMenuParams.name)) &&
-        (this.mainMessage == null ? createMenuParams.mainMessage == null : this.mainMessage.equals(createMenuParams.mainMessage)) &&
-        (this.invalidKeypressMessage == null ? createMenuParams.invalidKeypressMessage == null : this.invalidKeypressMessage.equals(createMenuParams.invalidKeypressMessage)) &&
+        (this.greeting == null ? createMenuParams.greeting == null : this.greeting.equals(createMenuParams.greeting)) &&
+        (this.keypressError == null ? createMenuParams.keypressError == null : this.keypressError.equals(createMenuParams.keypressError)) &&
         (this.allowExtensionDial == null ? createMenuParams.allowExtensionDial == null : this.allowExtensionDial.equals(createMenuParams.allowExtensionDial)) &&
         (this.keypressWaitTime == null ? createMenuParams.keypressWaitTime == null : this.keypressWaitTime.equals(createMenuParams.keypressWaitTime)) &&
         (this.timeoutHandler == null ? createMenuParams.timeoutHandler == null : this.timeoutHandler.equals(createMenuParams.timeoutHandler)) &&
@@ -127,8 +127,8 @@ public class CreateMenuParams {
   public int hashCode() {
     int result = 17;
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
-    result = 31 * result + (this.mainMessage == null ? 0: this.mainMessage.hashCode());
-    result = 31 * result + (this.invalidKeypressMessage == null ? 0: this.invalidKeypressMessage.hashCode());
+    result = 31 * result + (this.greeting == null ? 0: this.greeting.hashCode());
+    result = 31 * result + (this.keypressError == null ? 0: this.keypressError.hashCode());
     result = 31 * result + (this.allowExtensionDial == null ? 0: this.allowExtensionDial.hashCode());
     result = 31 * result + (this.keypressWaitTime == null ? 0: this.keypressWaitTime.hashCode());
     result = 31 * result + (this.timeoutHandler == null ? 0: this.timeoutHandler.hashCode());
@@ -142,8 +142,8 @@ public class CreateMenuParams {
     sb.append("class CreateMenuParams {\n");
     
     sb.append("  name: ").append(name).append("\n");
-    sb.append("  mainMessage: ").append(mainMessage).append("\n");
-    sb.append("  invalidKeypressMessage: ").append(invalidKeypressMessage).append("\n");
+    sb.append("  greeting: ").append(greeting).append("\n");
+    sb.append("  keypressError: ").append(keypressError).append("\n");
     sb.append("  allowExtensionDial: ").append(allowExtensionDial).append("\n");
     sb.append("  keypressWaitTime: ").append(keypressWaitTime).append("\n");
     sb.append("  timeoutHandler: ").append(timeoutHandler).append("\n");

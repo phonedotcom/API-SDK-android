@@ -19,9 +19,9 @@ import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * The Full SMS Object is identical to the SMS Summary Object. See above for details.
+ * The Full SMS Object includes all of the properties in the SMS Summary Object.
  **/
-@ApiModel(description = "The Full SMS Object is identical to the SMS Summary Object. See above for details.")
+@ApiModel(description = "The Full SMS Object includes all of the properties in the SMS Summary Object.")
 public class SmsFull {
   
   @SerializedName("id")
@@ -38,11 +38,13 @@ public class SmsFull {
   private Date createdAt = null;
   @SerializedName("text")
   private String text = null;
+  @SerializedName("is_new")
+  private Boolean isNew = null;
 
   /**
    * Unique SMS ID. Read-only.
    **/
-  @ApiModelProperty(required = true, value = "Unique SMS ID. Read-only.")
+  @ApiModelProperty(value = "Unique SMS ID. Read-only.")
   public String getId() {
     return id;
   }
@@ -53,7 +55,7 @@ public class SmsFull {
   /**
    * Caller ID number to display on the incoming/outgoing SMS message. For an outgoing message, it must be a phone number associated with your Phone.com account.
    **/
-  @ApiModelProperty(required = true, value = "Caller ID number to display on the incoming/outgoing SMS message. For an outgoing message, it must be a phone number associated with your Phone.com account.")
+  @ApiModelProperty(value = "Caller ID number to display on the incoming/outgoing SMS message. For an outgoing message, it must be a phone number associated with your Phone.com account.")
   public String getFrom() {
     return from;
   }
@@ -64,7 +66,7 @@ public class SmsFull {
   /**
    * An array of SMS recipients.
    **/
-  @ApiModelProperty(required = true, value = "An array of SMS recipients.")
+  @ApiModelProperty(value = "An array of SMS recipients.")
   public List<Recipient> getTo() {
     return to;
   }
@@ -75,7 +77,7 @@ public class SmsFull {
   /**
    * Direction of SMS. 'in' for Incoming messages, 'out' for Outgoing messages.
    **/
-  @ApiModelProperty(required = true, value = "Direction of SMS. 'in' for Incoming messages, 'out' for Outgoing messages.")
+  @ApiModelProperty(value = "Direction of SMS. 'in' for Incoming messages, 'out' for Outgoing messages.")
   public String getDirection() {
     return direction;
   }
@@ -86,7 +88,7 @@ public class SmsFull {
   /**
    * Unix time stamp representing the UTC time that the object was created in the Phone.com API system.
    **/
-  @ApiModelProperty(required = true, value = "Unix time stamp representing the UTC time that the object was created in the Phone.com API system.")
+  @ApiModelProperty(value = "Unix time stamp representing the UTC time that the object was created in the Phone.com API system.")
   public Integer getCreatedEpoch() {
     return createdEpoch;
   }
@@ -97,7 +99,7 @@ public class SmsFull {
   /**
    * Date string representing the UTC time that the object was created in the Phone.com API system.
    **/
-  @ApiModelProperty(required = true, value = "Date string representing the UTC time that the object was created in the Phone.com API system.")
+  @ApiModelProperty(value = "Date string representing the UTC time that the object was created in the Phone.com API system.")
   public Date getCreatedAt() {
     return createdAt;
   }
@@ -108,12 +110,23 @@ public class SmsFull {
   /**
    * Body of the SMS text
    **/
-  @ApiModelProperty(required = true, value = "Body of the SMS text")
+  @ApiModelProperty(value = "Body of the SMS text")
   public String getText() {
     return text;
   }
   public void setText(String text) {
     this.text = text;
+  }
+
+  /**
+   * True when SMS is new; False when SMS has been read.
+   **/
+  @ApiModelProperty(value = "True when SMS is new; False when SMS has been read.")
+  public Boolean getIsNew() {
+    return isNew;
+  }
+  public void setIsNew(Boolean isNew) {
+    this.isNew = isNew;
   }
 
 
@@ -132,7 +145,8 @@ public class SmsFull {
         (this.direction == null ? smsFull.direction == null : this.direction.equals(smsFull.direction)) &&
         (this.createdEpoch == null ? smsFull.createdEpoch == null : this.createdEpoch.equals(smsFull.createdEpoch)) &&
         (this.createdAt == null ? smsFull.createdAt == null : this.createdAt.equals(smsFull.createdAt)) &&
-        (this.text == null ? smsFull.text == null : this.text.equals(smsFull.text));
+        (this.text == null ? smsFull.text == null : this.text.equals(smsFull.text)) &&
+        (this.isNew == null ? smsFull.isNew == null : this.isNew.equals(smsFull.isNew));
   }
 
   @Override
@@ -145,6 +159,7 @@ public class SmsFull {
     result = 31 * result + (this.createdEpoch == null ? 0: this.createdEpoch.hashCode());
     result = 31 * result + (this.createdAt == null ? 0: this.createdAt.hashCode());
     result = 31 * result + (this.text == null ? 0: this.text.hashCode());
+    result = 31 * result + (this.isNew == null ? 0: this.isNew.hashCode());
     return result;
   }
 
@@ -160,6 +175,7 @@ public class SmsFull {
     sb.append("  createdEpoch: ").append(createdEpoch).append("\n");
     sb.append("  createdAt: ").append(createdAt).append("\n");
     sb.append("  text: ").append(text).append("\n");
+    sb.append("  isNew: ").append(isNew).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -23,10 +23,10 @@ public class ReplaceMenuParams {
   private String name = null;
   @SerializedName("greeting")
   private Object greeting = null;
-  @SerializedName("invalid_keypress")
-  private Object invalidKeypress = null;
+  @SerializedName("keypress_error")
+  private Object keypressError = null;
   @SerializedName("allow_extension_dial")
-  private Boolean allowExtensionDial = null;
+  private String allowExtensionDial = null;
   @SerializedName("keypress_wait_time")
   private Integer keypressWaitTime = null;
   @SerializedName("timeout_handler")
@@ -57,20 +57,20 @@ public class ReplaceMenuParams {
   /**
    **/
   @ApiModelProperty(value = "")
-  public Object getInvalidKeypress() {
-    return invalidKeypress;
+  public Object getKeypressError() {
+    return keypressError;
   }
-  public void setInvalidKeypress(Object invalidKeypress) {
-    this.invalidKeypress = invalidKeypress;
+  public void setKeypressError(Object keypressError) {
+    this.keypressError = keypressError;
   }
 
   /**
    **/
   @ApiModelProperty(value = "")
-  public Boolean getAllowExtensionDial() {
+  public String getAllowExtensionDial() {
     return allowExtensionDial;
   }
-  public void setAllowExtensionDial(Boolean allowExtensionDial) {
+  public void setAllowExtensionDial(String allowExtensionDial) {
     this.allowExtensionDial = allowExtensionDial;
   }
 
@@ -116,7 +116,7 @@ public class ReplaceMenuParams {
     ReplaceMenuParams replaceMenuParams = (ReplaceMenuParams) o;
     return (this.name == null ? replaceMenuParams.name == null : this.name.equals(replaceMenuParams.name)) &&
         (this.greeting == null ? replaceMenuParams.greeting == null : this.greeting.equals(replaceMenuParams.greeting)) &&
-        (this.invalidKeypress == null ? replaceMenuParams.invalidKeypress == null : this.invalidKeypress.equals(replaceMenuParams.invalidKeypress)) &&
+        (this.keypressError == null ? replaceMenuParams.keypressError == null : this.keypressError.equals(replaceMenuParams.keypressError)) &&
         (this.allowExtensionDial == null ? replaceMenuParams.allowExtensionDial == null : this.allowExtensionDial.equals(replaceMenuParams.allowExtensionDial)) &&
         (this.keypressWaitTime == null ? replaceMenuParams.keypressWaitTime == null : this.keypressWaitTime.equals(replaceMenuParams.keypressWaitTime)) &&
         (this.timeoutHandler == null ? replaceMenuParams.timeoutHandler == null : this.timeoutHandler.equals(replaceMenuParams.timeoutHandler)) &&
@@ -128,7 +128,7 @@ public class ReplaceMenuParams {
     int result = 17;
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.greeting == null ? 0: this.greeting.hashCode());
-    result = 31 * result + (this.invalidKeypress == null ? 0: this.invalidKeypress.hashCode());
+    result = 31 * result + (this.keypressError == null ? 0: this.keypressError.hashCode());
     result = 31 * result + (this.allowExtensionDial == null ? 0: this.allowExtensionDial.hashCode());
     result = 31 * result + (this.keypressWaitTime == null ? 0: this.keypressWaitTime.hashCode());
     result = 31 * result + (this.timeoutHandler == null ? 0: this.timeoutHandler.hashCode());
@@ -143,7 +143,7 @@ public class ReplaceMenuParams {
     
     sb.append("  name: ").append(name).append("\n");
     sb.append("  greeting: ").append(greeting).append("\n");
-    sb.append("  invalidKeypress: ").append(invalidKeypress).append("\n");
+    sb.append("  keypressError: ").append(keypressError).append("\n");
     sb.append("  allowExtensionDial: ").append(allowExtensionDial).append("\n");
     sb.append("  keypressWaitTime: ").append(keypressWaitTime).append("\n");
     sb.append("  timeoutHandler: ").append(timeoutHandler).append("\n");

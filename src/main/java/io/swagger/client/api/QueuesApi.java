@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateQueueParams;
-import io.swagger.client.model.DeleteQueue;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.ListQueues;
 import io.swagger.client.model.QueueFull;
 
@@ -59,8 +59,8 @@ public class QueuesApi {
   }
 
   /**
-  * Create a queue
-  * For more on the input fields, see Account Queues.
+  * Create a queue.
+  * Create a queue. See Account Queues for more info on the properties.
    * @param accountId Account ID
    * @param data Queue data
    * @return QueueFull
@@ -74,7 +74,7 @@ public class QueuesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/queues".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/queues".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -110,33 +110,31 @@ public class QueuesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Create a queue
-   * For more on the input fields, see Account Queues.
+   * Create a queue.
+   * Create a queue. See Account Queues for more info on the properties.
    * @param accountId Account ID   * @param data Queue data
   */
   public void createAccountQueue (Integer accountId, CreateQueueParams data, final Response.Listener<QueueFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountQueue",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountQueue",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountQueue"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/queues".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -166,7 +164,7 @@ public class QueuesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -190,13 +188,13 @@ public class QueuesApi {
     }
   }
   /**
-  * Delete a queue
-  * This service a queue from the account. For more information on queue properties, see Account Queues.
+  * Delete a queue.
+  * Delete a queue. See Account Queues for more info on the properties.
    * @param accountId Account ID
    * @param queueId Queue ID
-   * @return DeleteQueue
+   * @return DeleteEntry
   */
-  public DeleteQueue deleteAccountQueue (Integer accountId, Integer queueId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DeleteEntry deleteAccountQueue (Integer accountId, Integer queueId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -210,7 +208,7 @@ public class QueuesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
+    String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -237,7 +235,7 @@ public class QueuesApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (DeleteQueue) ApiInvoker.deserialize(localVarResponse, "", DeleteQueue.class);
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
       } else {
          return null;
       }
@@ -246,39 +244,36 @@ public class QueuesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Delete a queue
-   * This service a queue from the account. For more information on queue properties, see Account Queues.
+   * Delete a queue.
+   * Delete a queue. See Account Queues for more info on the properties.
    * @param accountId Account ID   * @param queueId Queue ID
   */
-  public void deleteAccountQueue (Integer accountId, Integer queueId, final Response.Listener<DeleteQueue> responseListener, final Response.ErrorListener errorListener) {
+  public void deleteAccountQueue (Integer accountId, Integer queueId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountQueue",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountQueue",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountQueue"));
     }
-    
     // verify the required parameter 'queueId' is set
     if (queueId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'queueId' when calling deleteAccountQueue",
-         new ApiException(400, "Missing the required parameter 'queueId' when calling deleteAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'queueId' when calling deleteAccountQueue",
+        new ApiException(400, "Missing the required parameter 'queueId' when calling deleteAccountQueue"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
@@ -308,7 +303,7 @@ public class QueuesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -316,7 +311,7 @@ public class QueuesApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((DeleteQueue) ApiInvoker.deserialize(localVarResponse,  "", DeleteQueue.class));
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -332,8 +327,8 @@ public class QueuesApi {
     }
   }
   /**
-  * Show details of an individual queue
-  * This service shows the details of an individual queue. For more on the input fields, see Account Queues.
+  * Show details of an individual queue.
+  * Show details of an individual queue. See Account Queues for more info on the properties.
    * @param accountId Account ID
    * @param queueId Queue ID
    * @return QueueFull
@@ -352,7 +347,7 @@ public class QueuesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
+    String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -388,39 +383,36 @@ public class QueuesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual queue
-   * This service shows the details of an individual queue. For more on the input fields, see Account Queues.
+   * Show details of an individual queue.
+   * Show details of an individual queue. See Account Queues for more info on the properties.
    * @param accountId Account ID   * @param queueId Queue ID
   */
   public void getAccountQueue (Integer accountId, Integer queueId, final Response.Listener<QueueFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountQueue",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountQueue",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountQueue"));
     }
-    
     // verify the required parameter 'queueId' is set
     if (queueId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'queueId' when calling getAccountQueue",
-         new ApiException(400, "Missing the required parameter 'queueId' when calling getAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'queueId' when calling getAccountQueue",
+        new ApiException(400, "Missing the required parameter 'queueId' when calling getAccountQueue"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
@@ -450,7 +442,7 @@ public class QueuesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -474,8 +466,8 @@ public class QueuesApi {
     }
   }
   /**
-  * Get a list of queues for an account
-  * The List Queues service lists all the queues belong to the account. See Account Queues for more info on the properties.
+  * Get a list of queues for an account.
+  * Get a list of queues for an account. See Account Queues for more info on the properties.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -495,7 +487,7 @@ public class QueuesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/queues".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/queues".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -538,33 +530,31 @@ public class QueuesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of queues for an account
-   * The List Queues service lists all the queues belong to the account. See Account Queues for more info on the properties.
+   * Get a list of queues for an account.
+   * Get a list of queues for an account. See Account Queues for more info on the properties.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountQueues (Integer accountId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListQueues> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountQueues",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountQueues"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountQueues",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountQueues"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/queues".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -601,7 +591,7 @@ public class QueuesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -625,8 +615,8 @@ public class QueuesApi {
     }
   }
   /**
-  * Replace a queue
-  * The Replace Queue service replaces the parameters of a queue. For more on the input fields, see Account Queues.
+  * Replace a queue.
+  * Replace a queue. See Account Queues for more info on the properties.
    * @param accountId Account ID
    * @param queueId Queue ID
    * @param data Queue data
@@ -646,7 +636,7 @@ public class QueuesApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
+    String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -682,39 +672,36 @@ public class QueuesApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Replace a queue
-   * The Replace Queue service replaces the parameters of a queue. For more on the input fields, see Account Queues.
+   * Replace a queue.
+   * Replace a queue. See Account Queues for more info on the properties.
    * @param accountId Account ID   * @param queueId Queue ID   * @param data Queue data
   */
   public void replaceAccountQueue (Integer accountId, Integer queueId, CreateQueueParams data, final Response.Listener<QueueFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountQueue",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountQueue",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountQueue"));
     }
-    
     // verify the required parameter 'queueId' is set
     if (queueId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'queueId' when calling replaceAccountQueue",
-         new ApiException(400, "Missing the required parameter 'queueId' when calling replaceAccountQueue"));
+      VolleyError error = new VolleyError("Missing the required parameter 'queueId' when calling replaceAccountQueue",
+        new ApiException(400, "Missing the required parameter 'queueId' when calling replaceAccountQueue"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/queues/{queue_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "queue_id" + "\\}", apiInvoker.escapeString(queueId.toString()));
@@ -744,7 +731,7 @@ public class QueuesApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

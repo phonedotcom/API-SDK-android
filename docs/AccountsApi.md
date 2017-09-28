@@ -5,7 +5,7 @@ All URIs are relative to *https://api.phone.com/v4*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getAccount**](AccountsApi.md#getAccount) | **GET** /accounts/{account_id} | Retrieve details of an individual account
-[**listAccounts**](AccountsApi.md#listAccounts) | **GET** /accounts | Get a list of accounts visible to the authenticated user or client
+[**listAccounts**](AccountsApi.md#listAccounts) | **GET** /accounts | Get a list of accounts visible to the authenticated user or client.
 
 
 <a name="getAccount"></a>
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Retrieve details of an individual account
 
-This service shows the details of an individual account. See Accounts for more info on the properties.
+Retrieve details of an individual account. See Accounts for more info on the properties.
 
 ### Example
 ```java
@@ -55,9 +55,9 @@ Name | Type | Description  | Notes
 # **listAccounts**
 > ListAccounts listAccounts(filtersId, sortId, limit, offset, fields)
 
-Get a list of accounts visible to the authenticated user or client
+Get a list of accounts visible to the authenticated user or client.
 
-This service lists the accounts accessible to the authenticated client. In most cases, there will only be one such account. See Accounts for more info on the properties.
+Get a list of accounts visible to the authenticated user or client. In most cases, there will only be one such account. See Accounts for more info on the properties.
 
 ### Example
 ```java

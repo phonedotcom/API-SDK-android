@@ -13,7 +13,7 @@
 package io.swagger.client.model;
 
 import io.swagger.client.model.CallNotifications;
-import io.swagger.client.model.Voicemail;
+import io.swagger.client.model.VoicemailInput;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -21,19 +21,17 @@ import com.google.gson.annotations.SerializedName;
 public class CreateExtensionParams {
   
   @SerializedName("voicemail")
-  private Voicemail voicemail = null;
+  private VoicemailInput voicemail = null;
   @SerializedName("call_notifications")
   private CallNotifications callNotifications = null;
   @SerializedName("caller_id")
   private String callerId = null;
   @SerializedName("usage_type")
   private String usageType = null;
-  @SerializedName("allows_call_waiting")
-  private Boolean allowsCallWaiting = null;
   @SerializedName("extension")
   private Integer extension = null;
   @SerializedName("include_in_directory")
-  private Boolean includeInDirectory = null;
+  private String includeInDirectory = null;
   @SerializedName("name")
   private String name = null;
   @SerializedName("full_name")
@@ -43,27 +41,25 @@ public class CreateExtensionParams {
   @SerializedName("name_greeting")
   private Object nameGreeting = null;
   @SerializedName("local_area_code")
-  private Integer localAreaCode = null;
+  private String localAreaCode = null;
   @SerializedName("enable_outbound_calls")
-  private Boolean enableOutboundCalls = null;
+  private String enableOutboundCalls = null;
   @SerializedName("enable_call_waiting")
-  private Boolean enableCallWaiting = null;
+  private String enableCallWaiting = null;
 
   /**
-   * Voicemail object
    **/
-  @ApiModelProperty(value = "Voicemail object")
-  public Voicemail getVoicemail() {
+  @ApiModelProperty(value = "")
+  public VoicemailInput getVoicemail() {
     return voicemail;
   }
-  public void setVoicemail(Voicemail voicemail) {
+  public void setVoicemail(VoicemailInput voicemail) {
     this.voicemail = voicemail;
   }
 
   /**
-   * Call Notifications object
    **/
-  @ApiModelProperty(value = "Call Notifications object")
+  @ApiModelProperty(value = "")
   public CallNotifications getCallNotifications() {
     return callNotifications;
   }
@@ -94,17 +90,6 @@ public class CreateExtensionParams {
   }
 
   /**
-   * Allows call waiting
-   **/
-  @ApiModelProperty(value = "Allows call waiting")
-  public Boolean getAllowsCallWaiting() {
-    return allowsCallWaiting;
-  }
-  public void setAllowsCallWaiting(Boolean allowsCallWaiting) {
-    this.allowsCallWaiting = allowsCallWaiting;
-  }
-
-  /**
    * Extension number (auto-generated if empty)
    **/
   @ApiModelProperty(value = "Extension number (auto-generated if empty)")
@@ -119,10 +104,10 @@ public class CreateExtensionParams {
    * Include in dial-by-name directory
    **/
   @ApiModelProperty(value = "Include in dial-by-name directory")
-  public Boolean getIncludeInDirectory() {
+  public String getIncludeInDirectory() {
     return includeInDirectory;
   }
-  public void setIncludeInDirectory(Boolean includeInDirectory) {
+  public void setIncludeInDirectory(String includeInDirectory) {
     this.includeInDirectory = includeInDirectory;
   }
 
@@ -174,10 +159,10 @@ public class CreateExtensionParams {
    * Local area code
    **/
   @ApiModelProperty(value = "Local area code")
-  public Integer getLocalAreaCode() {
+  public String getLocalAreaCode() {
     return localAreaCode;
   }
-  public void setLocalAreaCode(Integer localAreaCode) {
+  public void setLocalAreaCode(String localAreaCode) {
     this.localAreaCode = localAreaCode;
   }
 
@@ -185,10 +170,10 @@ public class CreateExtensionParams {
    * Enable outgoing calls
    **/
   @ApiModelProperty(value = "Enable outgoing calls")
-  public Boolean getEnableOutboundCalls() {
+  public String getEnableOutboundCalls() {
     return enableOutboundCalls;
   }
-  public void setEnableOutboundCalls(Boolean enableOutboundCalls) {
+  public void setEnableOutboundCalls(String enableOutboundCalls) {
     this.enableOutboundCalls = enableOutboundCalls;
   }
 
@@ -196,10 +181,10 @@ public class CreateExtensionParams {
    * Enable Call Waiting
    **/
   @ApiModelProperty(value = "Enable Call Waiting")
-  public Boolean getEnableCallWaiting() {
+  public String getEnableCallWaiting() {
     return enableCallWaiting;
   }
-  public void setEnableCallWaiting(Boolean enableCallWaiting) {
+  public void setEnableCallWaiting(String enableCallWaiting) {
     this.enableCallWaiting = enableCallWaiting;
   }
 
@@ -217,7 +202,6 @@ public class CreateExtensionParams {
         (this.callNotifications == null ? createExtensionParams.callNotifications == null : this.callNotifications.equals(createExtensionParams.callNotifications)) &&
         (this.callerId == null ? createExtensionParams.callerId == null : this.callerId.equals(createExtensionParams.callerId)) &&
         (this.usageType == null ? createExtensionParams.usageType == null : this.usageType.equals(createExtensionParams.usageType)) &&
-        (this.allowsCallWaiting == null ? createExtensionParams.allowsCallWaiting == null : this.allowsCallWaiting.equals(createExtensionParams.allowsCallWaiting)) &&
         (this.extension == null ? createExtensionParams.extension == null : this.extension.equals(createExtensionParams.extension)) &&
         (this.includeInDirectory == null ? createExtensionParams.includeInDirectory == null : this.includeInDirectory.equals(createExtensionParams.includeInDirectory)) &&
         (this.name == null ? createExtensionParams.name == null : this.name.equals(createExtensionParams.name)) &&
@@ -236,7 +220,6 @@ public class CreateExtensionParams {
     result = 31 * result + (this.callNotifications == null ? 0: this.callNotifications.hashCode());
     result = 31 * result + (this.callerId == null ? 0: this.callerId.hashCode());
     result = 31 * result + (this.usageType == null ? 0: this.usageType.hashCode());
-    result = 31 * result + (this.allowsCallWaiting == null ? 0: this.allowsCallWaiting.hashCode());
     result = 31 * result + (this.extension == null ? 0: this.extension.hashCode());
     result = 31 * result + (this.includeInDirectory == null ? 0: this.includeInDirectory.hashCode());
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
@@ -258,7 +241,6 @@ public class CreateExtensionParams {
     sb.append("  callNotifications: ").append(callNotifications).append("\n");
     sb.append("  callerId: ").append(callerId).append("\n");
     sb.append("  usageType: ").append(usageType).append("\n");
-    sb.append("  allowsCallWaiting: ").append(allowsCallWaiting).append("\n");
     sb.append("  extension: ").append(extension).append("\n");
     sb.append("  includeInDirectory: ").append(includeInDirectory).append("\n");
     sb.append("  name: ").append(name).append("\n");

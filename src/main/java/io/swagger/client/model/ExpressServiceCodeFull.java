@@ -12,6 +12,7 @@
 
 package io.swagger.client.model;
 
+import java.util.*;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
@@ -26,7 +27,7 @@ public class ExpressServiceCodeFull {
   @SerializedName("express_service_code")
   private String expressServiceCode = null;
   @SerializedName("expire_date")
-  private Integer expireDate = null;
+  private List<Integer> expireDate = null;
 
   /**
    * ID
@@ -54,10 +55,10 @@ public class ExpressServiceCodeFull {
    * UNIX time stamp representing the UTC time that the Express Service Code expires. Please note that every time this service is executed, the expire_date is set to now + 24 hours.
    **/
   @ApiModelProperty(value = "UNIX time stamp representing the UTC time that the Express Service Code expires. Please note that every time this service is executed, the expire_date is set to now + 24 hours.")
-  public Integer getExpireDate() {
+  public List<Integer> getExpireDate() {
     return expireDate;
   }
-  public void setExpireDate(Integer expireDate) {
+  public void setExpireDate(List<Integer> expireDate) {
     this.expireDate = expireDate;
   }
 

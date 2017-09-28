@@ -4,20 +4,20 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRoute**](RoutesApi.md#createRoute) | **POST** /accounts/{account_id}/routes | Add a new address book contact for an extension
-[**deleteAccountRoute**](RoutesApi.md#deleteAccountRoute) | **DELETE** /accounts/{account_id}/routes/{route_id} | 
-[**getAccountRoute**](RoutesApi.md#getAccountRoute) | **GET** /accounts/{account_id}/routes/{route_id} | Show details of an individual route
-[**listAccountRoutes**](RoutesApi.md#listAccountRoutes) | **GET** /accounts/{account_id}/routes | Get a list of routes for an account
-[**replaceAccountRoute**](RoutesApi.md#replaceAccountRoute) | **PUT** /accounts/{account_id}/routes/{route_id} | 
+[**createRoute**](RoutesApi.md#createRoute) | **POST** /accounts/{account_id}/routes | Add a new route to the account.
+[**deleteAccountRoute**](RoutesApi.md#deleteAccountRoute) | **DELETE** /accounts/{account_id}/routes/{route_id} | Delete a route from the account.
+[**getAccountRoute**](RoutesApi.md#getAccountRoute) | **GET** /accounts/{account_id}/routes/{route_id} | Show details of an individual route.
+[**listAccountRoutes**](RoutesApi.md#listAccountRoutes) | **GET** /accounts/{account_id}/routes | Get a list of routes for an account.
+[**replaceAccountRoute**](RoutesApi.md#replaceAccountRoute) | **PUT** /accounts/{account_id}/routes/{route_id} | Update the information of a route.
 
 
 <a name="createRoute"></a>
 # **createRoute**
 > RouteFull createRoute(accountId, data)
 
-Add a new address book contact for an extension
+Add a new route to the account.
 
-For more on the input fields, see Intro to Routes.
+Add a new route to the account. See Intro to Routes for more info on the properties.
 
 ### Example
 ```java
@@ -58,11 +58,11 @@ Name | Type | Description  | Notes
 
 <a name="deleteAccountRoute"></a>
 # **deleteAccountRoute**
-> DeleteRoute deleteAccountRoute(accountId, routeId)
+> DeleteEntry deleteAccountRoute(accountId, routeId)
 
+Delete a route from the account.
 
-
-
+Delete a route from the account. See Intro to Routes for more info on the properties.
 
 ### Example
 ```java
@@ -73,7 +73,7 @@ RoutesApi apiInstance = new RoutesApi();
 Integer accountId = 56; // Integer | Account ID
 Integer routeId = 56; // Integer | Route ID
 try {
-    DeleteRoute result = apiInstance.deleteAccountRoute(accountId, routeId);
+    DeleteEntry result = apiInstance.deleteAccountRoute(accountId, routeId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RoutesApi#deleteAccountRoute");
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteRoute**](DeleteRoute.md)
+[**DeleteEntry**](DeleteEntry.md)
 
 ### Authorization
 
@@ -105,9 +105,9 @@ Name | Type | Description  | Notes
 # **getAccountRoute**
 > RouteFull getAccountRoute(accountId, routeId)
 
-Show details of an individual route
+Show details of an individual route.
 
-This service shows the details of an individual route.
+Show details of an individual route. See Intro to Routes for more info on the properties.
 
 ### Example
 ```java
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 # **listAccountRoutes**
 > ListRoutes listAccountRoutes(accountId, filtersId, filtersName, sortId, sortName, limit, offset, fields)
 
-Get a list of routes for an account
+Get a list of routes for an account.
 
-See Intro to Routes for more info on the properties.
+Get a list of routes for an account. See Intro to Routes for more info on the properties.
 
 ### Example
 ```java
@@ -207,9 +207,9 @@ Name | Type | Description  | Notes
 # **replaceAccountRoute**
 > RouteFull replaceAccountRoute(accountId, routeId, data)
 
+Update the information of a route.
 
-
-For more on the input fields, see Intro to Routes.
+Update the information of a route. See Intro to Routes for more info on the properties.
 
 ### Example
 ```java

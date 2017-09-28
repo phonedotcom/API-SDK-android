@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateGroupParams;
-import io.swagger.client.model.DeleteGroup;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.GroupFull;
 import io.swagger.client.model.ListGroups;
 
@@ -59,11 +59,11 @@ public class GroupsApi {
   }
 
   /**
-  * 
-  * See Account Contact Groups for more info on the properties.
+  * Add a new contact group to an account extension.
+  * Add a new contact group to an account extension. See Account Contact Groups for details on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
-   * @param data Group name
+   * @param data Group data
    * @return GroupFull
   */
   public GroupFull createAccountExtensionContactGroup (Integer accountId, Integer extensionId, CreateGroupParams data) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -85,7 +85,7 @@ public class GroupsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -121,45 +121,41 @@ public class GroupsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * See Account Contact Groups for more info on the properties.
-   * @param accountId Account ID   * @param extensionId Extension ID   * @param data Group name
+   * Add a new contact group to an account extension.
+   * Add a new contact group to an account extension. See Account Contact Groups for details on the properties.
+   * @param accountId Account ID   * @param extensionId Extension ID   * @param data Group data
   */
   public void createAccountExtensionContactGroup (Integer accountId, Integer extensionId, CreateGroupParams data, final Response.Listener<GroupFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling createAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling createAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling createAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling createAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'data' is set
     if (data == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'data' when calling createAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'data' when calling createAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'data' when calling createAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'data' when calling createAccountExtensionContactGroup"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -189,7 +185,7 @@ public class GroupsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -213,14 +209,14 @@ public class GroupsApi {
     }
   }
   /**
-  * Delete an addressbook group
-  * 
+  * Delete a contact group from the address book.
+  * Delete a contact group from the address book. See Account Contact Groups for details on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param groupId Group ID
-   * @return DeleteGroup
+   * @return DeleteEntry
   */
-  public DeleteGroup deleteAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DeleteEntry deleteAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -239,7 +235,7 @@ public class GroupsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -266,7 +262,7 @@ public class GroupsApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (DeleteGroup) ApiInvoker.deserialize(localVarResponse, "", DeleteGroup.class);
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
       } else {
          return null;
       }
@@ -275,45 +271,41 @@ public class GroupsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Delete an addressbook group
-   * 
+   * Delete a contact group from the address book.
+   * Delete a contact group from the address book. See Account Contact Groups for details on the properties.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param groupId Group ID
   */
-  public void deleteAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId, final Response.Listener<DeleteGroup> responseListener, final Response.ErrorListener errorListener) {
+  public void deleteAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling deleteAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling deleteAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling deleteAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling deleteAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'groupId' is set
     if (groupId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'groupId' when calling deleteAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'groupId' when calling deleteAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'groupId' when calling deleteAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'groupId' when calling deleteAccountExtensionContactGroup"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
@@ -343,7 +335,7 @@ public class GroupsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -351,7 +343,7 @@ public class GroupsApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((DeleteGroup) ApiInvoker.deserialize(localVarResponse,  "", DeleteGroup.class));
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -367,8 +359,8 @@ public class GroupsApi {
     }
   }
   /**
-  * 
-  * See Account Contact Groups for more info on the properties.
+  * Retrieve the information of a contact group.
+  * Retrieve the information of a contact group. See Account Contact Groups for details on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param groupId Group ID
@@ -393,7 +385,7 @@ public class GroupsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -429,45 +421,41 @@ public class GroupsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * See Account Contact Groups for more info on the properties.
+   * Retrieve the information of a contact group.
+   * Retrieve the information of a contact group. See Account Contact Groups for details on the properties.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param groupId Group ID
   */
   public void getAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId, final Response.Listener<GroupFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling getAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling getAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling getAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'groupId' is set
     if (groupId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'groupId' when calling getAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'groupId' when calling getAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'groupId' when calling getAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'groupId' when calling getAccountExtensionContactGroup"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
@@ -497,7 +485,7 @@ public class GroupsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -521,8 +509,8 @@ public class GroupsApi {
     }
   }
   /**
-  * Show a list of contact groups belonging to an extension
-  * See Account Contact Groups for details on the properties.
+  * Show a list of contact groups belonging to an extension.
+  * Show a list of contact groups belonging to an extension. See Account Contact Groups for details on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param filtersId ID filter
@@ -548,7 +536,7 @@ public class GroupsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -591,39 +579,36 @@ public class GroupsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show a list of contact groups belonging to an extension
-   * See Account Contact Groups for details on the properties.
+   * Show a list of contact groups belonging to an extension.
+   * Show a list of contact groups belonging to an extension. See Account Contact Groups for details on the properties.
    * @param accountId Account ID   * @param extensionId Extension ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountExtensionContactGroups (Integer accountId, Integer extensionId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListGroups> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExtensionContactGroups",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExtensionContactGroups"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountExtensionContactGroups",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountExtensionContactGroups"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling listAccountExtensionContactGroups",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling listAccountExtensionContactGroups"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling listAccountExtensionContactGroups",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling listAccountExtensionContactGroups"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString()));
@@ -660,7 +645,7 @@ public class GroupsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -684,12 +669,12 @@ public class GroupsApi {
     }
   }
   /**
-  * 
-  * See Account Contact Groups for more info on the properties.
+  * Update the information of a contact group.
+  * Update the information of a contact group. See Account Contact Groups for details on the properties.
    * @param accountId Account ID
    * @param extensionId Extension ID
    * @param groupId Group ID
-   * @param data Group name
+   * @param data Group data
    * @return GroupFull
   */
   public GroupFull replaceAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId, CreateGroupParams data) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
@@ -716,7 +701,7 @@ public class GroupsApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
+    String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -752,51 +737,46 @@ public class GroupsApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * 
-   * See Account Contact Groups for more info on the properties.
-   * @param accountId Account ID   * @param extensionId Extension ID   * @param groupId Group ID   * @param data Group name
+   * Update the information of a contact group.
+   * Update the information of a contact group. See Account Contact Groups for details on the properties.
+   * @param accountId Account ID   * @param extensionId Extension ID   * @param groupId Group ID   * @param data Group data
   */
   public void replaceAccountExtensionContactGroup (Integer accountId, Integer extensionId, Integer groupId, CreateGroupParams data, final Response.Listener<GroupFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'extensionId' is set
     if (extensionId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling replaceAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'extensionId' when calling replaceAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'extensionId' when calling replaceAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'extensionId' when calling replaceAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'groupId' is set
     if (groupId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'groupId' when calling replaceAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'groupId' when calling replaceAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'groupId' when calling replaceAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'groupId' when calling replaceAccountExtensionContactGroup"));
     }
-    
     // verify the required parameter 'data' is set
     if (data == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'data' when calling replaceAccountExtensionContactGroup",
-         new ApiException(400, "Missing the required parameter 'data' when calling replaceAccountExtensionContactGroup"));
+      VolleyError error = new VolleyError("Missing the required parameter 'data' when calling replaceAccountExtensionContactGroup",
+        new ApiException(400, "Missing the required parameter 'data' when calling replaceAccountExtensionContactGroup"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/extensions/{extension_id}/contact-groups/{group_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "extension_id" + "\\}", apiInvoker.escapeString(extensionId.toString())).replaceAll("\\{" + "group_id" + "\\}", apiInvoker.escapeString(groupId.toString()));
@@ -826,7 +806,7 @@ public class GroupsApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,

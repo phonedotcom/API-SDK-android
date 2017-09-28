@@ -4,20 +4,20 @@ All URIs are relative to *https://api.phone.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAccountQueue**](QueuesApi.md#createAccountQueue) | **POST** /accounts/{account_id}/queues | Create a queue
-[**deleteAccountQueue**](QueuesApi.md#deleteAccountQueue) | **DELETE** /accounts/{account_id}/queues/{queue_id} | Delete a queue
-[**getAccountQueue**](QueuesApi.md#getAccountQueue) | **GET** /accounts/{account_id}/queues/{queue_id} | Show details of an individual queue
-[**listAccountQueues**](QueuesApi.md#listAccountQueues) | **GET** /accounts/{account_id}/queues | Get a list of queues for an account
-[**replaceAccountQueue**](QueuesApi.md#replaceAccountQueue) | **PUT** /accounts/{account_id}/queues/{queue_id} | Replace a queue
+[**createAccountQueue**](QueuesApi.md#createAccountQueue) | **POST** /accounts/{account_id}/queues | Create a queue.
+[**deleteAccountQueue**](QueuesApi.md#deleteAccountQueue) | **DELETE** /accounts/{account_id}/queues/{queue_id} | Delete a queue.
+[**getAccountQueue**](QueuesApi.md#getAccountQueue) | **GET** /accounts/{account_id}/queues/{queue_id} | Show details of an individual queue.
+[**listAccountQueues**](QueuesApi.md#listAccountQueues) | **GET** /accounts/{account_id}/queues | Get a list of queues for an account.
+[**replaceAccountQueue**](QueuesApi.md#replaceAccountQueue) | **PUT** /accounts/{account_id}/queues/{queue_id} | Replace a queue.
 
 
 <a name="createAccountQueue"></a>
 # **createAccountQueue**
 > QueueFull createAccountQueue(accountId, data)
 
-Create a queue
+Create a queue.
 
-For more on the input fields, see Account Queues.
+Create a queue. See Account Queues for more info on the properties.
 
 ### Example
 ```java
@@ -58,11 +58,11 @@ Name | Type | Description  | Notes
 
 <a name="deleteAccountQueue"></a>
 # **deleteAccountQueue**
-> DeleteQueue deleteAccountQueue(accountId, queueId)
+> DeleteEntry deleteAccountQueue(accountId, queueId)
 
-Delete a queue
+Delete a queue.
 
-This service a queue from the account. For more information on queue properties, see Account Queues.
+Delete a queue. See Account Queues for more info on the properties.
 
 ### Example
 ```java
@@ -73,7 +73,7 @@ QueuesApi apiInstance = new QueuesApi();
 Integer accountId = 56; // Integer | Account ID
 Integer queueId = 56; // Integer | Queue ID
 try {
-    DeleteQueue result = apiInstance.deleteAccountQueue(accountId, queueId);
+    DeleteEntry result = apiInstance.deleteAccountQueue(accountId, queueId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling QueuesApi#deleteAccountQueue");
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteQueue**](DeleteQueue.md)
+[**DeleteEntry**](DeleteEntry.md)
 
 ### Authorization
 
@@ -105,9 +105,9 @@ Name | Type | Description  | Notes
 # **getAccountQueue**
 > QueueFull getAccountQueue(accountId, queueId)
 
-Show details of an individual queue
+Show details of an individual queue.
 
-This service shows the details of an individual queue. For more on the input fields, see Account Queues.
+Show details of an individual queue. See Account Queues for more info on the properties.
 
 ### Example
 ```java
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 # **listAccountQueues**
 > ListQueues listAccountQueues(accountId, filtersId, filtersName, sortId, sortName, limit, offset, fields)
 
-Get a list of queues for an account
+Get a list of queues for an account.
 
-The List Queues service lists all the queues belong to the account. See Account Queues for more info on the properties.
+Get a list of queues for an account. See Account Queues for more info on the properties.
 
 ### Example
 ```java
@@ -207,9 +207,9 @@ Name | Type | Description  | Notes
 # **replaceAccountQueue**
 > QueueFull replaceAccountQueue(accountId, queueId, data)
 
-Replace a queue
+Replace a queue.
 
-The Replace Queue service replaces the parameters of a queue. For more on the input fields, see Account Queues.
+Replace a queue. See Account Queues for more info on the properties.
 
 ### Example
 ```java

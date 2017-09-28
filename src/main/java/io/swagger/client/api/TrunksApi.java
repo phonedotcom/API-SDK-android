@@ -24,7 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import io.swagger.client.model.CreateTrunkParams;
-import io.swagger.client.model.DeleteTrunk;
+import io.swagger.client.model.DeleteEntry;
 import io.swagger.client.model.ListTrunks;
 import io.swagger.client.model.TrunkFull;
 
@@ -59,8 +59,8 @@ public class TrunksApi {
   }
 
   /**
-  * Add a trunk record with SIP information
-  * For more on the input fields, see Account Trunks.
+  * Add a trunk record with SIP information.
+  * Add a trunk record with SIP information. See Account Trunks for more info on the properties.
    * @param accountId Account ID
    * @param data Trunk data
    * @return TrunkFull
@@ -79,7 +79,7 @@ public class TrunksApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/trunks".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/trunks".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -115,39 +115,36 @@ public class TrunksApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Add a trunk record with SIP information
-   * For more on the input fields, see Account Trunks.
+   * Add a trunk record with SIP information.
+   * Add a trunk record with SIP information. See Account Trunks for more info on the properties.
    * @param accountId Account ID   * @param data Trunk data
   */
   public void createAccountTrunk (Integer accountId, CreateTrunkParams data, final Response.Listener<TrunkFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling createAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling createAccountTrunk"));
     }
-    
     // verify the required parameter 'data' is set
     if (data == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'data' when calling createAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'data' when calling createAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'data' when calling createAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'data' when calling createAccountTrunk"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/trunks".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -177,7 +174,7 @@ public class TrunksApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -201,13 +198,13 @@ public class TrunksApi {
     }
   }
   /**
-  * Delete a trunk from account
-  * This service deletes a trunk from the account. For more on the properties of trunks, see Account Trunks.
+  * Delete a trunk from account.
+  * Delete a trunk from account. See Account Trunks for more info on the properties.
    * @param accountId Account ID
    * @param trunkId Trunk ID
-   * @return DeleteTrunk
+   * @return DeleteEntry
   */
-  public DeleteTrunk deleteAccountTrunk (Integer accountId, Integer trunkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public DeleteEntry deleteAccountTrunk (Integer accountId, Integer trunkId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -221,7 +218,7 @@ public class TrunksApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
+    String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -248,7 +245,7 @@ public class TrunksApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (DeleteTrunk) ApiInvoker.deserialize(localVarResponse, "", DeleteTrunk.class);
+         return (DeleteEntry) ApiInvoker.deserialize(localVarResponse, "", DeleteEntry.class);
       } else {
          return null;
       }
@@ -257,39 +254,36 @@ public class TrunksApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Delete a trunk from account
-   * This service deletes a trunk from the account. For more on the properties of trunks, see Account Trunks.
+   * Delete a trunk from account.
+   * Delete a trunk from account. See Account Trunks for more info on the properties.
    * @param accountId Account ID   * @param trunkId Trunk ID
   */
-  public void deleteAccountTrunk (Integer accountId, Integer trunkId, final Response.Listener<DeleteTrunk> responseListener, final Response.ErrorListener errorListener) {
+  public void deleteAccountTrunk (Integer accountId, Integer trunkId, final Response.Listener<DeleteEntry> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling deleteAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling deleteAccountTrunk"));
     }
-    
     // verify the required parameter 'trunkId' is set
     if (trunkId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'trunkId' when calling deleteAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'trunkId' when calling deleteAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'trunkId' when calling deleteAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'trunkId' when calling deleteAccountTrunk"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
@@ -319,7 +313,7 @@ public class TrunksApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -327,7 +321,7 @@ public class TrunksApi {
           @Override
           public void onResponse(String localVarResponse) {
             try {
-              responseListener.onResponse((DeleteTrunk) ApiInvoker.deserialize(localVarResponse,  "", DeleteTrunk.class));
+              responseListener.onResponse((DeleteEntry) ApiInvoker.deserialize(localVarResponse,  "", DeleteEntry.class));
             } catch (ApiException exception) {
                errorListener.onErrorResponse(new VolleyError(exception));
             }
@@ -343,8 +337,8 @@ public class TrunksApi {
     }
   }
   /**
-  * Show details of an individual trunk
-  * This service shows the details of an individual Trunk.
+  * Show details of an individual trunk.
+  * Show details of an individual trunk. See Account Trunks for more info on the properties.
    * @param accountId Account ID
    * @param trunkId Trunk ID
    * @return TrunkFull
@@ -363,7 +357,7 @@ public class TrunksApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
+    String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -399,39 +393,36 @@ public class TrunksApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Show details of an individual trunk
-   * This service shows the details of an individual Trunk.
+   * Show details of an individual trunk.
+   * Show details of an individual trunk. See Account Trunks for more info on the properties.
    * @param accountId Account ID   * @param trunkId Trunk ID
   */
   public void getAccountTrunk (Integer accountId, Integer trunkId, final Response.Listener<TrunkFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling getAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountTrunk"));
     }
-    
     // verify the required parameter 'trunkId' is set
     if (trunkId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'trunkId' when calling getAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'trunkId' when calling getAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'trunkId' when calling getAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'trunkId' when calling getAccountTrunk"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
@@ -461,7 +452,7 @@ public class TrunksApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -485,8 +476,8 @@ public class TrunksApi {
     }
   }
   /**
-  * Get a list of trunks for an account
-  * See Account Trunks for more info on the properties.
+  * Get a list of trunks for an account.
+  * Get a list of trunks for an account. See Account Trunks for more info on the properties.
    * @param accountId Account ID
    * @param filtersId ID filter
    * @param filtersName Name filter
@@ -506,7 +497,7 @@ public class TrunksApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/trunks".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
+    String path = "/accounts/{account_id}/trunks".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -549,33 +540,31 @@ public class TrunksApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Get a list of trunks for an account
-   * See Account Trunks for more info on the properties.
+   * Get a list of trunks for an account.
+   * Get a list of trunks for an account. See Account Trunks for more info on the properties.
    * @param accountId Account ID   * @param filtersId ID filter   * @param filtersName Name filter   * @param sortId ID sorting   * @param sortName Name sorting   * @param limit Max results   * @param offset Results to skip   * @param fields Field set
   */
   public void listAccountTrunks (Integer accountId, List<String> filtersId, List<String> filtersName, String sortId, String sortName, Integer limit, Integer offset, String fields, final Response.Listener<ListTrunks> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountTrunks",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountTrunks"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling listAccountTrunks",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountTrunks"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/trunks".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString()));
@@ -612,7 +601,7 @@ public class TrunksApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
@@ -636,8 +625,8 @@ public class TrunksApi {
     }
   }
   /**
-  * Replace parameters in a trunk
-  * For more on the input fields, see Account Trunks.
+  * Replace parameters in a trunk.
+  * Replace parameters in a trunk. See Account Trunks for more info on the properties.
    * @param accountId Account ID
    * @param trunkId Trunk ID
    * @param data Trunk data
@@ -662,7 +651,7 @@ public class TrunksApi {
     }
 
     // create path and map variables
-    String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
+    String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
 
     // query params
     List<Pair> queryParams = new ArrayList<Pair>();
@@ -698,45 +687,41 @@ public class TrunksApi {
     } catch (InterruptedException ex) {
        throw ex;
     } catch (ExecutionException ex) {
-       if (ex.getCause() instanceof VolleyError) {
-         VolleyError volleyError = (VolleyError)ex.getCause();
-         if (volleyError.networkResponse != null) {
-           throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
-         }
-       }
-       throw ex;
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
     } catch (TimeoutException ex) {
-       throw ex;
+      throw ex;
     }
   }
 
       /**
-   * Replace parameters in a trunk
-   * For more on the input fields, see Account Trunks.
+   * Replace parameters in a trunk.
+   * Replace parameters in a trunk. See Account Trunks for more info on the properties.
    * @param accountId Account ID   * @param trunkId Trunk ID   * @param data Trunk data
   */
   public void replaceAccountTrunk (Integer accountId, Integer trunkId, CreateTrunkParams data, final Response.Listener<TrunkFull> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = data;
 
-  
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'accountId' when calling replaceAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'accountId' when calling replaceAccountTrunk"));
     }
-    
     // verify the required parameter 'trunkId' is set
     if (trunkId == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'trunkId' when calling replaceAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'trunkId' when calling replaceAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'trunkId' when calling replaceAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'trunkId' when calling replaceAccountTrunk"));
     }
-    
     // verify the required parameter 'data' is set
     if (data == null) {
-       VolleyError error = new VolleyError("Missing the required parameter 'data' when calling replaceAccountTrunk",
-         new ApiException(400, "Missing the required parameter 'data' when calling replaceAccountTrunk"));
+      VolleyError error = new VolleyError("Missing the required parameter 'data' when calling replaceAccountTrunk",
+        new ApiException(400, "Missing the required parameter 'data' when calling replaceAccountTrunk"));
     }
-    
 
     // create path and map variables
     String path = "/accounts/{account_id}/trunks/{trunk_id}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "account_id" + "\\}", apiInvoker.escapeString(accountId.toString())).replaceAll("\\{" + "trunk_id" + "\\}", apiInvoker.escapeString(trunkId.toString()));
@@ -766,7 +751,7 @@ public class TrunksApi {
       // normal form params
           }
 
-      String[] authNames = new String[] { "apiKey" };
+    String[] authNames = new String[] { "apiKey" };
 
     try {
       apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType, authNames,
